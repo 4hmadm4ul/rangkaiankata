@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#e91e63">
     <title>Happy Anniversary My Love Nazira Wandiny ❤️</title>
 
     <!-- Bootstrap 5 CSS -->
@@ -20,6 +21,7 @@
     <style>
         * {
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html,
@@ -28,38 +30,116 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            width: 100%;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
             color: #4a4a4a;
+            background: #fce4ec;
+            position: relative;
         }
 
         .romantic-font {
             font-family: 'Dancing Script', cursive;
         }
 
-        /* ====== Floating Hearts Background ====== */
+        /* ============================================================
+           1. ANIMATED ROMANTIC BACKGROUND (gradient bergerak)
+           ============================================================ */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            background: linear-gradient(-45deg,
+                    #fce4ec,
+                    #f8bbd0,
+                    #f48fb1,
+                    #ff80ab,
+                    #f06292,
+                    #f8bbd0);
+            background-size: 400% 400%;
+            animation: gradientMove 18s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* ============================================================
+           2. BOKEH / GLOWING ORBS BERGERAK
+           ============================================================ */
+        .bokeh-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bokeh {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 192, 203, 0.2) 60%, transparent 70%);
+            filter: blur(8px);
+            animation: bokehFloat linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes bokehFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translate(40px, -60px) scale(1.2);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translate(-30px, -140vh) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================================
+           3. FLOATING HEARTS BACKGROUND
+           ============================================================ */
         .hearts-bg {
             position: fixed;
             inset: 0;
             overflow: hidden;
-            z-index: 0;
+            z-index: -1;
             pointer-events: none;
         }
 
         .hearts-bg span {
             position: absolute;
-            bottom: -50px;
-            color: rgba(233, 30, 99, 0.4);
-            font-size: 20px;
+            bottom: -60px;
+            color: rgba(233, 30, 99, 0.55);
+            font-size: 22px;
             animation: floatUp linear infinite;
+            text-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
         }
 
         @keyframes floatUp {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(0) rotate(0deg) scale(1);
                 opacity: 0;
             }
 
@@ -67,19 +147,65 @@
                 opacity: 1;
             }
 
+            90% {
+                opacity: 0.8;
+            }
+
             100% {
-                transform: translateY(-110vh) rotate(360deg);
+                transform: translateY(-115vh) rotate(720deg) scale(1.3);
                 opacity: 0;
             }
         }
 
-        /* ====== Page / Slide System ====== */
+        /* ============================================================
+           4. SPARKLE / TWINKLING PARTICLES
+           ============================================================ */
+        .sparkles {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.9),
+                0 0 14px 4px rgba(233, 30, 99, 0.6);
+            animation: twinkle ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        /* ============================================================
+           PAGE / SLIDE SYSTEM — EFEK TRANSISI 3D FLIP
+           ============================================================ */
         .page-container {
             position: relative;
             z-index: 2;
             width: 100%;
             height: 100vh;
+            height: 100dvh;
+            /* dynamic viewport height untuk mobile */
             overflow: hidden;
+            perspective: 1600px;
+            perspective-origin: center center;
         }
 
         .page {
@@ -91,29 +217,67 @@
             padding: 20px;
             opacity: 0;
             visibility: hidden;
-            transform: translateX(60px) scale(0.96);
-            transition: opacity 0.7s ease, transform 0.7s ease, visibility 0.7s;
+            transform: rotateY(90deg) scale(0.7) translateZ(-200px);
+            transform-origin: center center;
+            transition:
+                opacity 0.9s cubic-bezier(0.65, 0, 0.35, 1),
+                transform 1s cubic-bezier(0.65, 0, 0.35, 1),
+                visibility 0.9s;
             overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            backface-visibility: hidden;
         }
 
         .page.active {
             opacity: 1;
             visibility: visible;
-            transform: translateX(0) scale(1);
+            transform: rotateY(0deg) scale(1) translateZ(0);
         }
 
-        .page.leaving {
+        /* Arah keluar berbeda — next (ke kiri) */
+        .page.leaving-next {
             opacity: 0;
-            transform: translateX(-60px) scale(0.96);
+            transform: rotateY(-90deg) scale(0.7) translateZ(-200px);
         }
 
-        /* ====== Card Styling ====== */
+        /* Arah keluar berbeda — prev (ke kanan) */
+        .page.leaving-prev {
+            opacity: 0;
+            transform: rotateY(90deg) scale(0.7) translateZ(-200px);
+        }
+
+        /* Parallax effect di dalam page */
+        .page .card-custom {
+            animation: cardEnter 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes cardEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.9) rotateX(-10deg);
+            }
+
+            60% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0);
+            }
+        }
+
+        /* ============================================================
+           CARD
+           ============================================================ */
         .card-custom {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: none;
             border-radius: 24px;
-            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.25);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             max-width: 720px;
             width: 100%;
@@ -131,14 +295,23 @@
             height: 200%;
             background: radial-gradient(circle, rgba(233, 30, 99, 0.06) 0%, transparent 70%);
             pointer-events: none;
+            animation: rotateGlow 20s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .card-custom:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.3);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.35);
         }
 
-        /* ====== Heart Icon ====== */
+        /* ============================================================
+           HEART ICON PULSE
+           ============================================================ */
         .heart-icon {
             color: #e91e63;
             animation: pulse 1.5s infinite;
@@ -157,7 +330,9 @@
             }
         }
 
-        /* ====== Timeline ====== */
+        /* ============================================================
+           TIMELINE
+           ============================================================ */
         .timeline-box {
             border-left: 3px solid #e91e63;
             padding-left: 22px;
@@ -208,7 +383,9 @@
             box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.2);
         }
 
-        /* ====== Buttons ====== */
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
         .btn-romantic {
             background: linear-gradient(135deg, #e91e63, #c2185b);
             color: white;
@@ -220,6 +397,25 @@
             transition: all 0.3s ease;
             position: relative;
             z-index: 3;
+            overflow: hidden;
+        }
+
+        .btn-romantic::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn-romantic:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-romantic:hover {
@@ -229,28 +425,13 @@
             box-shadow: 0 10px 25px rgba(233, 30, 99, 0.5);
         }
 
-        .btn-romantic:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
+        .btn-romantic:active {
+            transform: translateY(-1px) scale(0.98);
         }
 
-        .btn-outline-romantic {
-            border: 2px solid #e91e63;
-            color: #e91e63;
-            border-radius: 30px;
-            padding: 10px 26px;
-            font-weight: 600;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-romantic:hover {
-            background: #e91e63;
-            color: white;
-        }
-
-        /* ====== Navigation Dots ====== */
+        /* ============================================================
+           NAV DOTS
+           ============================================================ */
         .nav-dots {
             position: fixed;
             bottom: 22px;
@@ -259,11 +440,12 @@
             display: flex;
             gap: 12px;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.78);
             padding: 10px 18px;
             border-radius: 30px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.25);
         }
 
         .nav-dots .dot {
@@ -272,7 +454,7 @@
             border-radius: 50%;
             background: #f8bbd0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: none;
             padding: 0;
         }
@@ -281,38 +463,45 @@
             background: #e91e63;
             width: 32px;
             border-radius: 8px;
+            box-shadow: 0 0 12px rgba(233, 30, 99, 0.6);
         }
 
         .nav-dots .dot:hover {
             background: #f48fb1;
+            transform: scale(1.2);
         }
 
-        /* ====== Page Counter ====== */
+        /* ============================================================
+           PAGE COUNTER
+           ============================================================ */
         .page-counter {
             position: fixed;
             top: 18px;
             right: 22px;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             color: #e91e63;
             font-weight: 600;
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
             backdrop-filter: blur(8px);
-            box-shadow: 0 3px 10px rgba(233, 30, 99, 0.15);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 3px 10px rgba(233, 30, 99, 0.2);
         }
 
-        /* ====== Arrow Navigation ====== */
+        /* ============================================================
+           ARROWS
+           ============================================================ */
         .nav-arrow {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.92);
             border: none;
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             color: #e91e63;
             font-size: 1.3rem;
@@ -320,14 +509,19 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.25);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .nav-arrow:hover:not(:disabled) {
             background: #e91e63;
             color: white;
-            transform: translateY(-50%) scale(1.1);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 6px 22px rgba(233, 30, 99, 0.5);
+        }
+
+        .nav-arrow:active:not(:disabled) {
+            transform: translateY(-50%) scale(0.95);
         }
 
         .nav-arrow:disabled {
@@ -343,7 +537,9 @@
             right: 18px;
         }
 
-        /* ====== Fade in text ====== */
+        /* ============================================================
+           FADE-IN
+           ============================================================ */
         .fade-in {
             animation: fadeInUp 0.8s ease both;
         }
@@ -360,7 +556,7 @@
             }
         }
 
-        /* ====== Scrollbar ====== */
+        /* Scrollbar */
         .page::-webkit-scrollbar {
             width: 6px;
         }
@@ -370,28 +566,147 @@
             border-radius: 10px;
         }
 
-        /* ====== Responsive ====== */
-        @media (max-width: 768px) {
+        .page::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* ============================================================
+           SWIPE HINT (muncul di HP)
+           ============================================================ */
+        .swipe-hint {
+            position: fixed;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9;
+            background: rgba(233, 30, 99, 0.85);
+            color: white;
+            font-size: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            animation: swipeHintPulse 2s ease infinite;
+            pointer-events: none;
+        }
+
+        @keyframes swipeHintPulse {
+
+            0%,
+            100% {
+                opacity: 0.9;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* ============================================================
+           PROGRESS BAR
+           ============================================================ */
+        .progress-bar-romantic {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e91e63, #ff80ab);
+            z-index: 11;
+            transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+            box-shadow: 0 0 10px rgba(233, 30, 99, 0.6);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* ============================================================
+           RESPONSIVE — LAPTOP (≥992px)
+           ============================================================ */
+        @media (min-width: 992px) {
             .card-custom {
-                padding: 28px 22px;
+                max-width: 780px;
+                padding: 50px 55px;
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE — TABLET (768px - 991px)
+           ============================================================ */
+        @media (max-width: 991px) and (min-width: 768px) {
+            .card-custom {
+                max-width: 640px;
+                padding: 36px 32px;
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE — HP (≤767px)
+           ============================================================ */
+        @media (max-width: 767px) {
+            .page {
+                padding: 70px 12px 90px;
+                align-items: flex-start;
+            }
+
+            .card-custom {
+                padding: 26px 20px;
+                border-radius: 20px;
+                margin-top: 10px;
+            }
+
+            .card-custom:hover {
+                transform: none;
+            }
+
+            .card-custom h1,
+            .card-custom .display-4 {
+                font-size: 1.65rem;
+                line-height: 1.25;
+            }
+
+            .card-custom h2,
+            .card-custom .fs-1 {
+                font-size: 1.5rem !important;
+            }
+
+            .card-custom h3 {
+                font-size: 1.2rem;
+            }
+
+            .card-custom p.fs-6 {
+                font-size: 0.9rem !important;
+                line-height: 1.7 !important;
             }
 
             .nav-arrow {
                 width: 40px;
                 height: 40px;
                 font-size: 1.1rem;
+                top: auto;
+                bottom: 85px;
+                transform: none;
+            }
+
+            .nav-arrow:hover:not(:disabled) {
+                transform: scale(1.1);
+            }
+
+            .nav-arrow:active:not(:disabled) {
+                transform: scale(0.95);
             }
 
             .nav-arrow.prev {
-                left: 8px;
+                left: 12px;
             }
 
             .nav-arrow.next {
-                right: 8px;
+                right: 12px;
             }
 
             .nav-dots {
-                bottom: 12px;
+                bottom: 14px;
                 gap: 8px;
                 padding: 8px 14px;
             }
@@ -404,14 +719,188 @@
             .nav-dots .dot.active {
                 width: 24px;
             }
+
+            .page-counter {
+                top: 12px;
+                right: 12px;
+                font-size: 0.72rem;
+                padding: 5px 12px;
+            }
+
+            .swipe-hint {
+                display: flex;
+            }
+
+            .timeline-box {
+                margin-bottom: 20px;
+                padding-left: 18px;
+            }
+
+            .timeline-box::before {
+                width: 18px;
+                height: 18px;
+                font-size: 9px;
+                left: -11px;
+            }
+
+            .timeline-box h5 {
+                font-size: 1rem;
+            }
+
+            .timeline-box p {
+                font-size: 0.78rem !important;
+            }
+
+            .btn-romantic {
+                padding: 11px 24px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE — HP KECIL (≤400px)
+           ============================================================ */
+        @media (max-width: 400px) {
+            .page {
+                padding: 65px 10px 85px;
+            }
+
+            .card-custom {
+                padding: 22px 16px;
+                border-radius: 18px;
+            }
+
+            .card-custom h1,
+            .card-custom .display-4 {
+                font-size: 1.4rem;
+            }
+
+            .card-custom h2,
+            .card-custom .fs-1 {
+                font-size: 1.3rem !important;
+            }
+
+            .card-custom p.fs-6 {
+                font-size: 0.85rem !important;
+            }
+
+            .heart-icon.display-1 {
+                font-size: 3.5rem;
+            }
+
+            .nav-dots {
+                gap: 6px;
+                padding: 7px 12px;
+            }
+
+            .nav-dots .dot {
+                width: 9px;
+                height: 9px;
+            }
+
+            .nav-dots .dot.active {
+                width: 20px;
+            }
+
+            .swipe-hint {
+                font-size: 0.68rem;
+                padding: 5px 11px;
+                bottom: 78px;
+            }
+        }
+
+        /* ============================================================
+           LANDSCAPE HP — kompak
+           ============================================================ */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .page {
+                padding: 15px 70px;
+                align-items: center;
+            }
+
+            .card-custom {
+                padding: 20px 24px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .card-custom h1,
+            .card-custom .display-4 {
+                font-size: 1.3rem;
+            }
+
+            .card-custom h2,
+            .card-custom .fs-1 {
+                font-size: 1.15rem !important;
+            }
+
+            .card-custom p.fs-6 {
+                font-size: 0.82rem !important;
+                line-height: 1.5 !important;
+            }
+
+            .heart-icon.display-1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-arrow {
+                top: 50%;
+                bottom: auto;
+                transform: translateY(-50%);
+            }
+
+            .nav-arrow:hover:not(:disabled) {
+                transform: translateY(-50%) scale(1.1);
+            }
+
+            .nav-dots {
+                bottom: 8px;
+                padding: 6px 12px;
+            }
+
+            .swipe-hint {
+                display: none;
+            }
+
+            .timeline-box {
+                margin-bottom: 14px;
+            }
+        }
+
+        /* ============================================================
+           REDUCE MOTION — aksesibilitas
+           ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+
+            .animated-bg,
+            .bokeh,
+            .hearts-bg span,
+            .sparkle,
+            .heart-icon,
+            .card-custom::before {
+                animation: none !important;
+            }
+
+            .page {
+                transition: opacity 0.4s ease, visibility 0.4s;
+                transform: none !important;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Floating Hearts Background -->
+    <!-- ============================================================
+         ANIMATED BACKGROUND LAYERS
+         ============================================================ -->
+    <div class="animated-bg"></div>
+    <div class="bokeh-layer" id="bokehLayer"></div>
     <div class="hearts-bg" id="heartsBg"></div>
+    <div class="sparkles" id="sparkles"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-romantic" id="progressBar" style="width: 20%"></div>
 
     <!-- Page Counter -->
     <div class="page-counter" id="pageCounter">1 / 5</div>
@@ -424,10 +913,17 @@
         <i class="bi bi-chevron-right"></i>
     </button>
 
-    <!-- Pages Container -->
+    <!-- Swipe Hint (mobile only) -->
+    <div class="swipe-hint" id="swipeHint">
+        <i class="bi bi-arrow-left-right"></i> Geser untuk navigasi
+    </div>
+
+    <!-- ============================================================
+         PAGES
+         ============================================================ -->
     <div class="page-container">
 
-        <!-- ====== PAGE 1: HERO / PEMBUKA ====== -->
+        <!-- PAGE 1: HERO -->
         <section class="page active" data-page="0">
             <div class="card-custom text-center">
                 <i class="bi bi-heart-fill display-1 heart-icon"></i>
@@ -443,7 +939,7 @@
             </div>
         </section>
 
-        <!-- ====== PAGE 2: SURAT CINTA ====== -->
+        <!-- PAGE 2: SURAT CINTA -->
         <section class="page" data-page="1">
             <div class="card-custom">
                 <h2 class="romantic-font text-center text-danger mb-4 fs-1 fade-in">
@@ -466,7 +962,7 @@
             </div>
         </section>
 
-        <!-- ====== PAGE 3: UCAPAN MAAAF ====== -->
+        <!-- PAGE 3: MAAF -->
         <section class="page" data-page="2">
             <div class="card-custom">
                 <div class="text-center mb-3">
@@ -497,7 +993,7 @@
             </div>
         </section>
 
-        <!-- ====== PAGE 4: TIMELINE / PERJALANAN ====== -->
+        <!-- PAGE 4: TIMELINE -->
         <section class="page" data-page="3">
             <div class="card-custom">
                 <h3 class="text-center text-danger mb-4 fw-bold fade-in">
@@ -527,7 +1023,7 @@
             </div>
         </section>
 
-        <!-- ====== PAGE 5: PESAN RAHASIA ====== -->
+        <!-- PAGE 5: PESAN RAHASIA -->
         <section class="page" data-page="4">
             <div class="card-custom text-center">
                 <i class="bi bi-envelope-heart-fill display-4 text-danger heart-icon mb-3"></i>
@@ -564,17 +1060,81 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        /* ====== Page Navigation System ====== */
+        /* ============================================================
+           1. GENERATE BOKEH ORBS
+           ============================================================ */
+        (function createBokeh() {
+            const layer = document.getElementById('bokehLayer');
+            const isMobile = window.innerWidth < 768;
+            const count = isMobile ? 8 : 14;
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'bokeh';
+                const size = 60 + Math.random() * 140;
+                b.style.width = size + 'px';
+                b.style.height = size + 'px';
+                b.style.left = Math.random() * 100 + '%';
+                b.style.bottom = (-20 - Math.random() * 30) + '%';
+                b.style.animationDuration = (14 + Math.random() * 14) + 's';
+                b.style.animationDelay = (Math.random() * 12) + 's';
+                layer.appendChild(b);
+            }
+        })();
+
+        /* ============================================================
+           2. FLOATING HEARTS
+           ============================================================ */
+        (function createHearts() {
+            const heartsBg = document.getElementById('heartsBg');
+            const heartChars = ['❤️', '💕', '💖', '💗', '💓', '🌸', '💞', '💝'];
+            const isMobile = window.innerWidth < 768;
+            const heartCount = isMobile ? 14 : 22;
+
+            for (let i = 0; i < heartCount; i++) {
+                const span = document.createElement('span');
+                span.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+                span.style.left = Math.random() * 100 + '%';
+                span.style.fontSize = (14 + Math.random() * 26) + 'px';
+                span.style.animationDuration = (8 + Math.random() * 12) + 's';
+                span.style.animationDelay = (Math.random() * 12) + 's';
+                heartsBg.appendChild(span);
+            }
+        })();
+
+        /* ============================================================
+           3. SPARKLES
+           ============================================================ */
+        (function createSparkles() {
+            const container = document.getElementById('sparkles');
+            const isMobile = window.innerWidth < 768;
+            const count = isMobile ? 20 : 40;
+            for (let i = 0; i < count; i++) {
+                const s = document.createElement('div');
+                s.className = 'sparkle';
+                s.style.left = Math.random() * 100 + '%';
+                s.style.top = Math.random() * 100 + '%';
+                s.style.animationDuration = (1.5 + Math.random() * 3) + 's';
+                s.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(s);
+            }
+        })();
+
+        /* ============================================================
+           4. PAGE NAVIGATION — 3D FLIP
+           ============================================================ */
         const pages = document.querySelectorAll('.page');
         const totalPages = pages.length;
         let currentPage = 0;
+        let isAnimating = false;
 
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const pageCounter = document.getElementById('pageCounter');
         const navDots = document.getElementById('navDots');
+        const progressBar = document.getElementById('progressBar');
+        const swipeHint = document.getElementById('swipeHint');
 
-        /* Build navigation dots */
+        /* Build nav dots */
         pages.forEach((_, i) => {
             const dot = document.createElement('button');
             dot.className = 'dot' + (i === 0 ? ' active' : '');
@@ -585,31 +1145,35 @@
 
         const dots = document.querySelectorAll('.nav-dots .dot');
 
-        /* Update UI based on current page */
         function updateUI() {
             dots.forEach((d, i) => d.classList.toggle('active', i === currentPage));
             pageCounter.textContent = (currentPage + 1) + ' / ' + totalPages;
             prevBtn.disabled = currentPage === 0;
             nextBtn.disabled = currentPage === totalPages - 1;
+            progressBar.style.width = ((currentPage + 1) / totalPages * 100) + '%';
         }
 
-        /* Go to a specific page */
         function goToPage(index) {
-            if (index === currentPage || index < 0 || index >= totalPages) return;
+            if (index === currentPage || index < 0 || index >= totalPages || isAnimating) return;
 
+            isAnimating = true;
+
+            const direction = index > currentPage ? 'next' : 'prev';
             const oldPage = pages[currentPage];
             const newPage = pages[index];
 
+            /* Keluar halaman lama */
             oldPage.classList.remove('active');
-            oldPage.classList.add('leaving');
+            oldPage.classList.add(direction === 'next' ? 'leaving-next' : 'leaving-prev');
 
             setTimeout(() => {
-                oldPage.classList.remove('leaving');
-            }, 700);
+                oldPage.classList.remove('leaving-next', 'leaving-prev');
+            }, 1000);
 
+            /* Masuk halaman baru */
             newPage.classList.add('active');
 
-            /* Re-trigger animations inside new page */
+            /* Re-trigger animasi dalam halaman */
             newPage.querySelectorAll('.fade-in, .timeline-box').forEach(el => {
                 el.style.animation = 'none';
                 void el.offsetWidth;
@@ -619,12 +1183,23 @@
             currentPage = index;
             updateUI();
 
-            /* Collapse any open collapse when leaving page 5 */
+            /* Tutup collapse saat pindah halaman */
             const collapse = document.getElementById('pesanRahasia');
             if (collapse && collapse.classList.contains('show')) {
                 const bsCollapse = bootstrap.Collapse.getInstance(collapse);
                 if (bsCollapse) bsCollapse.hide();
             }
+
+            /* Sembunyikan swipe hint setelah interaksi */
+            if (swipeHint) {
+                swipeHint.style.opacity = '0';
+                swipeHint.style.transition = 'opacity 0.4s';
+                setTimeout(() => swipeHint.style.display = 'none', 400);
+            }
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 900);
         }
 
         function nextPage() {
@@ -635,44 +1210,65 @@
             goToPage(currentPage - 1);
         }
 
-        /* Keyboard navigation */
+        /* Keyboard */
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextPage();
+            }
             if (e.key === 'ArrowLeft') prevPage();
         });
 
-        /* Swipe support for mobile */
+        /* Swipe support untuk HP & tablet */
         let touchStartX = 0;
+        let touchStartY = 0;
+        let touchStartTime = 0;
+        const SWIPE_THRESHOLD = 50;
+        const SWIPE_TIME = 800;
+
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+            touchStartTime = Date.now();
         }, { passive: true });
 
         document.addEventListener('touchend', (e) => {
             const touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 60) {
-                if (diff > 0) nextPage();
+            const touchEndY = e.changedTouches[0].screenY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            const elapsed = Date.now() - touchStartTime;
+
+            /* Hanya trigger jika swipe horizontal & cepat */
+            if (Math.abs(diffX) > Math.abs(diffY) &&
+                Math.abs(diffX) > SWIPE_THRESHOLD &&
+                elapsed < SWIPE_TIME) {
+                if (diffX > 0) nextPage();
                 else prevPage();
             }
         }, { passive: true });
 
-        /* ====== Floating Hearts Generator ====== */
-        const heartsBg = document.getElementById('heartsBg');
-        const heartChars = ['❤️', '💕', '💖', '💗', '💓', '🌸', '💞'];
-        const heartCount = 18;
-
-        for (let i = 0; i < heartCount; i++) {
-            const span = document.createElement('span');
-            span.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
-            span.style.left = Math.random() * 100 + '%';
-            span.style.fontSize = (14 + Math.random() * 24) + 'px';
-            span.style.animationDuration = (8 + Math.random() * 10) + 's';
-            span.style.animationDelay = (Math.random() * 10) + 's';
-            heartsBg.appendChild(span);
-        }
-
-        /* Initialize UI */
+        /* Init */
         updateUI();
+
+        /* Auto-hide swipe hint setelah 5 detik */
+        setTimeout(() => {
+            if (swipeHint && swipeHint.style.display !== 'none') {
+                swipeHint.style.opacity = '0';
+                swipeHint.style.transition = 'opacity 0.5s';
+                setTimeout(() => swipeHint.style.display = 'none', 500);
+            }
+        }, 5000);
+
+        /* Re-generate particles saat resize (kalau orientasi berubah) */
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                /* Update UI counter tetap stabil */
+                updateUI();
+            }, 250);
+        });
     </script>
 
 </body>
