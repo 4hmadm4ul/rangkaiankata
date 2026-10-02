@@ -18,184 +18,663 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
             color: #4a4a4a;
-            min-height: 100vh;
         }
 
         .romantic-font {
             font-family: 'Dancing Script', cursive;
         }
 
-        .hero-section {
-            padding: 80px 20px 40px;
+        /* ====== Floating Hearts Background ====== */
+        .hearts-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
         }
 
+        .hearts-bg span {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(233, 30, 99, 0.4);
+            font-size: 20px;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ====== Page / Slide System ====== */
+        .page-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .page {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(60px) scale(0.96);
+            transition: opacity 0.7s ease, transform 0.7s ease, visibility 0.7s;
+            overflow-y: auto;
+        }
+
+        .page.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0) scale(1);
+        }
+
+        .page.leaving {
+            opacity: 0;
+            transform: translateX(-60px) scale(0.96);
+        }
+
+        /* ====== Card Styling ====== */
         .card-custom {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
             border: none;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 720px;
+            width: 100%;
+            padding: 40px 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-custom::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.06) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .card-custom:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.3);
         }
 
+        /* ====== Heart Icon ====== */
         .heart-icon {
             color: #e91e63;
             animation: pulse 1.5s infinite;
+            display: inline-block;
         }
 
         @keyframes pulse {
-            0% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
 
             50% {
                 transform: scale(1.2);
             }
-
-            100% {
-                transform: scale(1);
-            }
         }
 
+        /* ====== Timeline ====== */
         .timeline-box {
             border-left: 3px solid #e91e63;
-            padding-left: 20px;
-            margin-bottom: 25px;
+            padding-left: 22px;
+            margin-bottom: 28px;
             position: relative;
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .timeline-box:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-box:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .timeline-box:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .timeline-box::before {
             content: "♥";
             position: absolute;
-            left: -12px;
+            left: -13px;
             top: 0;
             background: #e91e63;
             color: white;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-size: 11px;
+            box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.2);
         }
 
+        /* ====== Buttons ====== */
         .btn-romantic {
-            background-color: #e91e63;
+            background: linear-gradient(135deg, #e91e63, #c2185b);
             color: white;
             border-radius: 30px;
-            padding: 10px 25px;
+            padding: 12px 30px;
             border: none;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.35);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 3;
         }
 
         .btn-romantic:hover {
-            background-color: #c2185b;
+            background: linear-gradient(135deg, #c2185b, #ad1457);
             color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.5);
+        }
+
+        .btn-romantic:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-outline-romantic {
+            border: 2px solid #e91e63;
+            color: #e91e63;
+            border-radius: 30px;
+            padding: 10px 26px;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-romantic:hover {
+            background: #e91e63;
+            color: white;
+        }
+
+        /* ====== Navigation Dots ====== */
+        .nav-dots {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 18px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+        }
+
+        .nav-dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #f8bbd0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .nav-dots .dot.active {
+            background: #e91e63;
+            width: 32px;
+            border-radius: 8px;
+        }
+
+        .nav-dots .dot:hover {
+            background: #f48fb1;
+        }
+
+        /* ====== Page Counter ====== */
+        .page-counter {
+            position: fixed;
+            top: 18px;
+            right: 22px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            color: #e91e63;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 3px 10px rgba(233, 30, 99, 0.15);
+        }
+
+        /* ====== Arrow Navigation ====== */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: #e91e63;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrow:hover:not(:disabled) {
+            background: #e91e63;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-arrow.prev {
+            left: 18px;
+        }
+
+        .nav-arrow.next {
+            right: 18px;
+        }
+
+        /* ====== Fade in text ====== */
+        .fade-in {
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ====== Scrollbar ====== */
+        .page::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .page::-webkit-scrollbar-thumb {
+            background: #f48fb1;
+            border-radius: 10px;
+        }
+
+        /* ====== Responsive ====== */
+        @media (max-width: 768px) {
+            .card-custom {
+                padding: 28px 22px;
+            }
+
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .nav-arrow.prev {
+                left: 8px;
+            }
+
+            .nav-arrow.next {
+                right: 8px;
+            }
+
+            .nav-dots {
+                bottom: 12px;
+                gap: 8px;
+                padding: 8px 14px;
+            }
+
+            .nav-dots .dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            .nav-dots .dot.active {
+                width: 24px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Hero Header -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <i class="bi bi-heart-fill display-1 heart-icon"></i>
-            <h1 class="display-3 romantic-font text-danger mt-3 fw-bold">Happy Anniversary, Sayangku Nazira Wandiny</h1>
-            <p class="lead text-muted">"Terima kasih telah berjalan bersamaku dan mewarnai setiap hariku."</p>
-        </div>
-    </section>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsBg"></div>
 
-    <!-- Main Content -->
-    <section class="container pb-5">
-        <div class="row justify-content-center g-4">
+    <!-- Page Counter -->
+    <div class="page-counter" id="pageCounter">1 / 5</div>
 
-            <!-- Card Surat Cinta -->
-            <div class="col-md-8">
-                <div class="card card-custom p-4 p-md-5">
-                    <h2 class="romantic-font text-center text-danger mb-4 fs-1">Untuk Kamu orang yang Spesial bagi ku
-                    </h2>
-                    <p class="fs-6 lh-lg">
-                        Selamat hari jadi yang kesekian sayang ku nazira Tidak terasa waktu berlalu begitu cepat saat
-                        aku bersamamu.
-                        Terima kasih sudah menjadi bagian terbaik dalam hidupku, menjadi tempatku pulang, dan selalu ada
-                        baik dalam suka maupun duka.
-                        Maafin qku ya kalau terkadang aku masih terdapat bnyak kekuramgan dalam sama kamu aku msih ada
-                        salah nya sayang dari sikap perilaku aku kata2 aku dll.
+    <!-- Navigation Arrows -->
+    <button class="nav-arrow prev" id="prevBtn" onclick="prevPage()" aria-label="Sebelumnya">
+        <i class="bi bi-chevron-left"></i>
+    </button>
+    <button class="nav-arrow next" id="nextBtn" onclick="nextPage()" aria-label="Berikutnya">
+        <i class="bi bi-chevron-right"></i>
+    </button>
+
+    <!-- Pages Container -->
+    <div class="page-container">
+
+        <!-- ====== PAGE 1: HERO / PEMBUKA ====== -->
+        <section class="page active" data-page="0">
+            <div class="card-custom text-center">
+                <i class="bi bi-heart-fill display-1 heart-icon"></i>
+                <h1 class="display-4 romantic-font text-danger mt-3 fw-bold fade-in">
+                    Happy Anniversary,<br>Sayangku Nazira Wandiny
+                </h1>
+                <p class="lead text-muted mt-3 fade-in">
+                    "Terima kasih telah berjalan bersamaku dan mewarnai setiap hariku."
+                </p>
+                <button class="btn btn-romantic mt-4" onclick="nextPage()">
+                    <i class="bi bi-envelope-heart-fill me-2"></i> Buka Ucapan
+                </button>
+            </div>
+        </section>
+
+        <!-- ====== PAGE 2: SURAT CINTA ====== -->
+        <section class="page" data-page="1">
+            <div class="card-custom">
+                <h2 class="romantic-font text-center text-danger mb-4 fs-1 fade-in">
+                    Untuk Kamu yang Spesial
+                </h2>
+                <p class="fs-6 lh-lg fade-in">
+                    Selamat hari jadi yang kesekian sayangku Nazira. Tidak terasa waktu berlalu begitu cepat saat
+                    aku bersamamu. Terima kasih sudah menjadi bagian terbaik dalam hidupku, menjadi tempatku pulang,
+                    dan selalu ada baik dalam suka maupun duka.
+                </p>
+                <p class="fs-6 lh-lg fade-in">
+                    Aku bersyukur atas setiap tawa yang kita bagi, setiap rintangan yang berhasil kita lewati
+                    bersama, dan setiap kenangan indah yang telah kita ukir. Semoga cinta kita selalu bertumbuh,
+                    makin kuat, dan dipenuhi kebahagiaan setiap harinya.
+                </p>
+                <p class="fs-6 lh-lg text-end fw-bold mt-4 fade-in">
+                    Dengan penuh kasih,<br>
+                    <span class="text-danger romantic-font fs-3">Aa Ahmad</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ====== PAGE 3: UCAPAN MAAAF ====== -->
+        <section class="page" data-page="2">
+            <div class="card-custom">
+                <div class="text-center mb-3">
+                    <i class="bi bi-emoji-frown display-5 text-danger heart-icon"></i>
+                </div>
+                <h2 class="romantic-font text-center text-danger mb-4 fs-1 fade-in">
+                    Maafkan Aku Ya, Sayang
+                </h2>
+                <p class="fs-6 lh-lg fade-in">
+                    Nazira sayang, di hari yang spesial ini aku ingin meminta maaf dari lubuk hatiku yang paling
+                    dalam. Maafin aku ya kalau selama ini aku masih punya banyak kekurangan dalam sama kamu.
+                    Aku masih sering salah, baik dari sikap, perilaku, kata-kata, dan kadang aku kurang peka
+                    sama perasaan kamu.
+                </p>
+                <p class="fs-6 lh-lg fade-in">
+                    Aku sadar aku bukan orang yang sempurna, tapi aku selalu berusaha jadi lebih baik untuk kamu
+                    dan untuk kita. Terima kasih sudah sabar menghadapi aku, terima kasih sudah tetap bertahan
+                    dan memilih aku setiap hari.
+                </p>
+                <p class="fs-6 lh-lg fade-in">
+                    Aku janji akan terus belajar, terus memperbaiki diri, dan terus mencintai kamu dengan lebih
+                    baik lagi. Maafkan aku ya, sayang. ❤️
+                </p>
+                <p class="fs-6 lh-lg text-end fw-bold mt-4 fade-in">
+                    Yang selalu mencintaimu,<br>
+                    <span class="text-danger romantic-font fs-3">Aa Ahmad</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ====== PAGE 4: TIMELINE / PERJALANAN ====== -->
+        <section class="page" data-page="3">
+            <div class="card-custom">
+                <h3 class="text-center text-danger mb-4 fw-bold fade-in">
+                    Perjalanan Cinta Kita
+                </h3>
+
+                <div class="timeline-box">
+                    <h5 class="fw-bold mb-1">Pertama Kali Bertemu</h5>
+                    <p class="text-muted small mb-0">
+                        Hari di mana semuanya dimulai dan senyumanmu mengubah duniaku.
                     </p>
-                    <p class="fs-6 lh-lg">
-                        Aku bersyukur atas setiap tawa yang kita bagi, setiap rintangan yang berhasil kita lewati
-                        bersama, dan setiap kenangan indah yang telah kita ukir. Semoga cinta kita selalu bertumbuh,
-                        makin kuat, dan dipenuhi kebahagiaan setiap harinya.
+                </div>
+
+                <div class="timeline-box">
+                    <h5 class="fw-bold mb-1">Resmi Bersama</h5>
+                    <p class="text-muted small mb-0">
+                        Keputusan terbaik dalam hidupku adalah memilih untuk berjalan bersamamu.
                     </p>
-                    <p class="fs-6 lh-lg text-end fw-bold mt-4">
-                        Dengan penuh kasih,<br>
-                        <span class="text-danger romantic-font fs-3">AaAhmad</span>
+                </div>
+
+                <div class="timeline-box">
+                    <h5 class="fw-bold mb-1">Hari Ini &amp; Selamanya</h5>
+                    <p class="text-muted small mb-0">
+                        Merayakan setiap momen indah dan siap menyambut masa depan bersama.
                     </p>
                 </div>
             </div>
+        </section>
 
-            <!-- Card Garis Waktu / Kenangan -->
-            <div class="col-md-8">
-                <div class="card card-custom p-4 p-md-5">
-                    <h3 class="text-center text-danger mb-4 fw-bold">Perjalanan Cinta Kita</h3>
-
-                    <div class="timeline-box">
-                        <h5 class="fw-bold mb-1">Pertama Kali Bertemu</h5>
-                        <p class="text-muted small">Hari di mana semuanya dimulai dan senyumanmu mengubah duniaku.</p>
-                    </div>
-
-                    <div class="timeline-box">
-                        <h5 class="fw-bold mb-1">Resmi Bersama</h5>
-                        <p class="text-muted small">Keputusan terbaik dalam hidupku adalah memilih untuk berjalan
-                            bersamamu.</p>
-                    </div>
-
-                    <div class="timeline-box">
-                        <h5 class="fw-bold mb-1">Hari Ini & Selamanya</h5>
-                        <p class="text-muted small">Merayakan setiap momen indah dan siap menyambut masa depan bersama.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tombol Pesan Rahasia -->
-            <div class="col-md-8 text-center mt-4">
-                <button class="btn btn-romantic" type="button" data-bs-toggle="collapse" data-bs-target="#pesanRahasia">
-                    <i class="bi bi-envelope-heart-fill me-2"></i> Klik untuk Pesan Spesial
+        <!-- ====== PAGE 5: PESAN RAHASIA ====== -->
+        <section class="page" data-page="4">
+            <div class="card-custom text-center">
+                <i class="bi bi-envelope-heart-fill display-4 text-danger heart-icon mb-3"></i>
+                <h2 class="romantic-font text-danger mb-4 fs-1 fade-in">
+                    Pesan Spesial Untukmu
+                </h2>
+                <button class="btn btn-romantic" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#pesanRahasia">
+                    <i class="bi bi-envelope-heart-fill me-2"></i> Klik untuk Pesan Rahasia
                 </button>
 
-                <div class="collapse mt-3" id="pesanRahasia">
-                    <div class="card card-body card-custom border-danger text-danger">
+                <div class="collapse mt-4" id="pesanRahasia">
+                    <div class="card card-body border-danger text-danger"
+                        style="border-radius: 16px; background: #fff5f8;">
                         <p class="mb-0 fw-semibold fs-5">
-                            "Aku menyukaimu bukan hanya karena siapa dirimu, tetapi karena bagaimana jadinya diriku saat
-                            aku bersamamu. I Love You Always! ❤️"
+                            "Aku menyukaimu bukan hanya karena siapa dirimu, tetapi karena bagaimana jadinya
+                            diriku saat aku bersamamu. I Love You Always! ❤️"
                         </p>
                     </div>
                 </div>
+
+                <p class="text-muted mt-4 small fade-in">
+                    Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> khusus untuk pasangan terbaik di dunia.
+                </p>
             </div>
+        </section>
 
-        </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 text-muted border-top border-pink">
-        <small>Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> khusus untuk pasangan terbaik di
-            dunia.</small>
-    </footer>
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots"></div>
 
     <!-- Bootstrap 5 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* ====== Page Navigation System ====== */
+        const pages = document.querySelectorAll('.page');
+        const totalPages = pages.length;
+        let currentPage = 0;
+
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageCounter = document.getElementById('pageCounter');
+        const navDots = document.getElementById('navDots');
+
+        /* Build navigation dots */
+        pages.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Halaman ' + (i + 1));
+            dot.addEventListener('click', () => goToPage(i));
+            navDots.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.nav-dots .dot');
+
+        /* Update UI based on current page */
+        function updateUI() {
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentPage));
+            pageCounter.textContent = (currentPage + 1) + ' / ' + totalPages;
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === totalPages - 1;
+        }
+
+        /* Go to a specific page */
+        function goToPage(index) {
+            if (index === currentPage || index < 0 || index >= totalPages) return;
+
+            const oldPage = pages[currentPage];
+            const newPage = pages[index];
+
+            oldPage.classList.remove('active');
+            oldPage.classList.add('leaving');
+
+            setTimeout(() => {
+                oldPage.classList.remove('leaving');
+            }, 700);
+
+            newPage.classList.add('active');
+
+            /* Re-trigger animations inside new page */
+            newPage.querySelectorAll('.fade-in, .timeline-box').forEach(el => {
+                el.style.animation = 'none';
+                void el.offsetWidth;
+                el.style.animation = '';
+            });
+
+            currentPage = index;
+            updateUI();
+
+            /* Collapse any open collapse when leaving page 5 */
+            const collapse = document.getElementById('pesanRahasia');
+            if (collapse && collapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(collapse);
+                if (bsCollapse) bsCollapse.hide();
+            }
+        }
+
+        function nextPage() {
+            goToPage(currentPage + 1);
+        }
+
+        function prevPage() {
+            goToPage(currentPage - 1);
+        }
+
+        /* Keyboard navigation */
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+        });
+
+        /* Swipe support for mobile */
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 60) {
+                if (diff > 0) nextPage();
+                else prevPage();
+            }
+        }, { passive: true });
+
+        /* ====== Floating Hearts Generator ====== */
+        const heartsBg = document.getElementById('heartsBg');
+        const heartChars = ['❤️', '💕', '💖', '💗', '💓', '🌸', '💞'];
+        const heartCount = 18;
+
+        for (let i = 0; i < heartCount; i++) {
+            const span = document.createElement('span');
+            span.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+            span.style.left = Math.random() * 100 + '%';
+            span.style.fontSize = (14 + Math.random() * 24) + 'px';
+            span.style.animationDuration = (8 + Math.random() * 10) + 's';
+            span.style.animationDelay = (Math.random() * 10) + 's';
+            heartsBg.appendChild(span);
+        }
+
+        /* Initialize UI */
+        updateUI();
+    </script>
+
 </body>
 
 </html>
