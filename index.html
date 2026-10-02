@@ -636,56 +636,117 @@
            ============================================================ */
         @media (max-width: 991px) and (min-width: 768px) {
             .card-custom {
-                max-width: 640px;
-                padding: 36px 32px;
+                max-width: 92%;
+                padding: 40px 34px;
+                border-radius: 24px;
+            }
+
+            .card-custom h1,
+            .card-custom .display-4 {
+                font-size: 2.2rem;
+            }
+
+            .card-custom h2,
+            .card-custom .fs-1 {
+                font-size: 2rem !important;
+            }
+
+            .card-custom h3 {
+                font-size: 1.6rem;
+            }
+
+            .card-custom p.fs-6 {
+                font-size: 1.05rem !important;
+                line-height: 1.85 !important;
+            }
+
+            .timeline-box h5 {
+                font-size: 1.2rem;
+            }
+
+            .timeline-box p {
+                font-size: 0.95rem !important;
             }
         }
 
         /* ============================================================
-           RESPONSIVE — HP (≤767px)
+           RESPONSIVE — HP (≤767px) — DIPERBESAR
            ============================================================ */
         @media (max-width: 767px) {
             .page {
-                padding: 70px 12px 90px;
+                padding: 75px 10px 100px;
                 align-items: flex-start;
             }
 
+            /* 🔥 CARD DIPERBESAR — hampir full layar */
             .card-custom {
-                padding: 26px 20px;
-                border-radius: 20px;
-                margin-top: 10px;
+                padding: 34px 24px;
+                border-radius: 26px;
+                margin-top: 8px;
+                max-width: 100%;
+                width: 100%;
+                box-shadow: 0 12px 36px rgba(233, 30, 99, 0.3);
             }
 
             .card-custom:hover {
                 transform: none;
             }
 
+            /* 🔥 JUDUL DIPERBESAR */
             .card-custom h1,
             .card-custom .display-4 {
-                font-size: 1.65rem;
+                font-size: 2.1rem;
                 line-height: 1.25;
+                letter-spacing: 0.3px;
             }
 
             .card-custom h2,
             .card-custom .fs-1 {
-                font-size: 1.5rem !important;
+                font-size: 1.95rem !important;
+                line-height: 1.3;
             }
 
             .card-custom h3 {
-                font-size: 1.2rem;
+                font-size: 1.6rem;
             }
 
+            /* 🔥 PARAGRAF DIPERBESAR — lebih nyaman dibaca */
             .card-custom p.fs-6 {
-                font-size: 0.9rem !important;
+                font-size: 1.08rem !important;
+                line-height: 1.85 !important;
+                letter-spacing: 0.2px;
+            }
+
+            .card-custom p.lead {
+                font-size: 1.05rem !important;
                 line-height: 1.7 !important;
             }
 
+            /* 🔥 TANDA TANGAN DIPERBESAR */
+            .card-custom .romantic-font.fs-3 {
+                font-size: 2.1rem !important;
+            }
+
+            /* 🔥 ICON HATI DIPERBESAR */
+            .heart-icon.display-1 {
+                font-size: 4.2rem;
+            }
+
+            .heart-icon.display-5 {
+                font-size: 2.8rem;
+            }
+
+            .heart-icon.display-4 {
+                font-size: 3.5rem;
+            }
+
+            /* Nav arrow di bawah */
             .nav-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
+                width: 46px;
+                height: 46px;
+                font-size: 1.2rem;
                 top: auto;
-                bottom: 85px;
+                bottom: 95px;
                 transform: none;
             }
 
@@ -698,16 +759,137 @@
             }
 
             .nav-arrow.prev {
-                left: 12px;
+                left: 14px;
             }
 
             .nav-arrow.next {
+                right: 14px;
+            }
+
+            /* Nav dots diperbesar */
+            .nav-dots {
+                bottom: 18px;
+                gap: 9px;
+                padding: 10px 16px;
+            }
+
+            .nav-dots .dot {
+                width: 11px;
+                height: 11px;
+            }
+
+            .nav-dots .dot.active {
+                width: 28px;
+            }
+
+            .page-counter {
+                top: 12px;
                 right: 12px;
+                font-size: 0.85rem;
+                padding: 6px 14px;
+            }
+
+            .swipe-hint {
+                display: flex;
+                font-size: 0.8rem;
+                padding: 7px 15px;
+                bottom: 100px;
+            }
+
+            /* Timeline diperbesar */
+            .timeline-box {
+                margin-bottom: 24px;
+                padding-left: 22px;
+                border-left-width: 4px;
+            }
+
+            .timeline-box::before {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+                left: -14px;
+            }
+
+            .timeline-box h5 {
+                font-size: 1.15rem;
+                margin-bottom: 6px !important;
+            }
+
+            .timeline-box p {
+                font-size: 1rem !important;
+                line-height: 1.65 !important;
+            }
+
+            /* Button diperbesar */
+            .btn-romantic {
+                padding: 14px 32px;
+                font-size: 1.05rem;
+                border-radius: 32px;
+            }
+
+            /* Pesan rahasia card */
+            #pesanRahasia .card-body p {
+                font-size: 1.1rem !important;
+                line-height: 1.7 !important;
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE — HP KECIL (≤400px) — TETAP BESAR
+           ============================================================ */
+        @media (max-width: 400px) {
+            .page {
+                padding: 70px 8px 95px;
+            }
+
+            .card-custom {
+                padding: 28px 18px;
+                border-radius: 22px;
+                margin-top: 6px;
+            }
+
+            .card-custom h1,
+            .card-custom .display-4 {
+                font-size: 1.85rem;
+                line-height: 1.25;
+            }
+
+            .card-custom h2,
+            .card-custom .fs-1 {
+                font-size: 1.7rem !important;
+            }
+
+            .card-custom h3 {
+                font-size: 1.45rem;
+            }
+
+            .card-custom p.fs-6 {
+                font-size: 1rem !important;
+                line-height: 1.8 !important;
+            }
+
+            .card-custom p.lead {
+                font-size: 0.98rem !important;
+            }
+
+            .card-custom .romantic-font.fs-3 {
+                font-size: 1.85rem !important;
+            }
+
+            .heart-icon.display-1 {
+                font-size: 3.6rem;
+            }
+
+            .heart-icon.display-5 {
+                font-size: 2.5rem;
+            }
+
+            .heart-icon.display-4 {
+                font-size: 3rem;
             }
 
             .nav-dots {
-                bottom: 14px;
-                gap: 8px;
+                gap: 7px;
                 padding: 8px 14px;
             }
 
@@ -720,92 +902,30 @@
                 width: 24px;
             }
 
-            .page-counter {
-                top: 12px;
-                right: 12px;
-                font-size: 0.72rem;
-                padding: 5px 12px;
-            }
-
             .swipe-hint {
-                display: flex;
+                font-size: 0.75rem;
+                padding: 6px 13px;
+                bottom: 92px;
             }
 
-            .timeline-box {
-                margin-bottom: 20px;
-                padding-left: 18px;
-            }
-
-            .timeline-box::before {
-                width: 18px;
-                height: 18px;
-                font-size: 9px;
-                left: -11px;
+            .nav-arrow {
+                width: 42px;
+                height: 42px;
+                font-size: 1.05rem;
+                bottom: 88px;
             }
 
             .timeline-box h5 {
-                font-size: 1rem;
+                font-size: 1.08rem;
             }
 
             .timeline-box p {
-                font-size: 0.78rem !important;
+                font-size: 0.95rem !important;
             }
 
             .btn-romantic {
-                padding: 11px 24px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* ============================================================
-           RESPONSIVE — HP KECIL (≤400px)
-           ============================================================ */
-        @media (max-width: 400px) {
-            .page {
-                padding: 65px 10px 85px;
-            }
-
-            .card-custom {
-                padding: 22px 16px;
-                border-radius: 18px;
-            }
-
-            .card-custom h1,
-            .card-custom .display-4 {
-                font-size: 1.4rem;
-            }
-
-            .card-custom h2,
-            .card-custom .fs-1 {
-                font-size: 1.3rem !important;
-            }
-
-            .card-custom p.fs-6 {
-                font-size: 0.85rem !important;
-            }
-
-            .heart-icon.display-1 {
-                font-size: 3.5rem;
-            }
-
-            .nav-dots {
-                gap: 6px;
-                padding: 7px 12px;
-            }
-
-            .nav-dots .dot {
-                width: 9px;
-                height: 9px;
-            }
-
-            .nav-dots .dot.active {
-                width: 20px;
-            }
-
-            .swipe-hint {
-                font-size: 0.68rem;
-                padding: 5px 11px;
-                bottom: 78px;
+                padding: 13px 28px;
+                font-size: 1rem;
             }
         }
 
@@ -819,28 +939,28 @@
             }
 
             .card-custom {
-                padding: 20px 24px;
+                padding: 22px 26px;
                 max-height: 90vh;
                 overflow-y: auto;
             }
 
             .card-custom h1,
             .card-custom .display-4 {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
 
             .card-custom h2,
             .card-custom .fs-1 {
-                font-size: 1.15rem !important;
+                font-size: 1.35rem !important;
             }
 
             .card-custom p.fs-6 {
-                font-size: 0.82rem !important;
-                line-height: 1.5 !important;
+                font-size: 0.92rem !important;
+                line-height: 1.6 !important;
             }
 
             .heart-icon.display-1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .nav-arrow {
