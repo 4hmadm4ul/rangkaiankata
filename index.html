@@ -2,1395 +2,680 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#e91e63">
-    <title>Happy Anniversary My Love Nazira Wandiny ❤️</title>
-
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #4a4a4a;
-            background: #fce4ec;
-            position: relative;
-        }
-
-        .romantic-font {
-            font-family: 'Dancing Script', cursive;
-        }
-
-        /* ============================================================
-           1. ANIMATED ROMANTIC BACKGROUND (gradient bergerak)
-           ============================================================ */
-        .animated-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -3;
-            background: linear-gradient(-45deg,
-                    #fce4ec,
-                    #f8bbd0,
-                    #f48fb1,
-                    #ff80ab,
-                    #f06292,
-                    #f8bbd0);
-            background-size: 400% 400%;
-            animation: gradientMove 18s ease infinite;
-        }
-
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* ============================================================
-           2. BOKEH / GLOWING ORBS BERGERAK
-           ============================================================ */
-        .bokeh-layer {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .bokeh {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 192, 203, 0.2) 60%, transparent 70%);
-            filter: blur(8px);
-            animation: bokehFloat linear infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes bokehFloat {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0;
-            }
-
-            15% {
-                opacity: 0.8;
-            }
-
-            50% {
-                transform: translate(40px, -60px) scale(1.2);
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translate(-30px, -140vh) scale(0.8);
-                opacity: 0;
-            }
-        }
-
-        /* ============================================================
-           3. FLOATING HEARTS BACKGROUND
-           ============================================================ */
-        .hearts-bg {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .hearts-bg span {
-            position: absolute;
-            bottom: -60px;
-            color: rgba(233, 30, 99, 0.55);
-            font-size: 22px;
-            animation: floatUp linear infinite;
-            text-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(1);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: translateY(-115vh) rotate(720deg) scale(1.3);
-                opacity: 0;
-            }
-        }
-
-        /* ============================================================
-           4. SPARKLE / TWINKLING PARTICLES
-           ============================================================ */
-        .sparkles {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.9),
-                0 0 14px 4px rgba(233, 30, 99, 0.6);
-            animation: twinkle ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-
-            0%,
-            100% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.4);
-            }
-        }
-
-        /* ============================================================
-           PAGE / SLIDE SYSTEM — EFEK TRANSISI 3D FLIP
-           ============================================================ */
-        .page-container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: 100vh;
-            height: 100dvh;
-            /* dynamic viewport height untuk mobile */
-            overflow: hidden;
-            perspective: 1600px;
-            perspective-origin: center center;
-        }
-
-        .page {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transform: rotateY(90deg) scale(0.7) translateZ(-200px);
-            transform-origin: center center;
-            transition:
-                opacity 0.9s cubic-bezier(0.65, 0, 0.35, 1),
-                transform 1s cubic-bezier(0.65, 0, 0.35, 1),
-                visibility 0.9s;
-            overflow-y: auto;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-            backface-visibility: hidden;
-        }
-
-        .page.active {
-            opacity: 1;
-            visibility: visible;
-            transform: rotateY(0deg) scale(1) translateZ(0);
-        }
-
-        /* Arah keluar berbeda — next (ke kiri) */
-        .page.leaving-next {
-            opacity: 0;
-            transform: rotateY(-90deg) scale(0.7) translateZ(-200px);
-        }
-
-        /* Arah keluar berbeda — prev (ke kanan) */
-        .page.leaving-prev {
-            opacity: 0;
-            transform: rotateY(90deg) scale(0.7) translateZ(-200px);
-        }
-
-        /* Parallax effect di dalam page */
-        .page .card-custom {
-            animation: cardEnter 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-        }
-
-        @keyframes cardEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.9) rotateX(-10deg);
-            }
-
-            60% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1) rotateX(0);
-            }
-        }
-
-        /* ============================================================
-           CARD
-           ============================================================ */
-        .card-custom {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: none;
-            border-radius: 24px;
-            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            max-width: 720px;
-            width: 100%;
-            padding: 40px 35px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-custom::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(233, 30, 99, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-            animation: rotateGlow 20s linear infinite;
-        }
-
-        @keyframes rotateGlow {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .card-custom:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.35);
-        }
-
-        /* ============================================================
-           HEART ICON PULSE
-           ============================================================ */
-        .heart-icon {
-            color: #e91e63;
-            animation: pulse 1.5s infinite;
-            display: inline-block;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        /* ============================================================
-           TIMELINE
-           ============================================================ */
-        .timeline-box {
-            border-left: 3px solid #e91e63;
-            padding-left: 22px;
-            margin-bottom: 28px;
-            position: relative;
-            opacity: 0;
-            animation: slideIn 0.6s ease forwards;
-        }
-
-        .timeline-box:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-
-        .timeline-box:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-
-        .timeline-box:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .timeline-box::before {
-            content: "♥";
-            position: absolute;
-            left: -13px;
-            top: 0;
-            background: #e91e63;
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.2);
-        }
-
-        /* ============================================================
-           BUTTONS
-           ============================================================ */
-        .btn-romantic {
-            background: linear-gradient(135deg, #e91e63, #c2185b);
-            color: white;
-            border-radius: 30px;
-            padding: 12px 30px;
-            border: none;
-            font-weight: 600;
-            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.35);
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 3;
-            overflow: hidden;
-        }
-
-        .btn-romantic::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
-
-        .btn-romantic:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-romantic:hover {
-            background: linear-gradient(135deg, #c2185b, #ad1457);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.5);
-        }
-
-        .btn-romantic:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-
-        /* ============================================================
-           NAV DOTS
-           ============================================================ */
-        .nav-dots {
-            position: fixed;
-            bottom: 22px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.78);
-            padding: 10px 18px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.25);
-        }
-
-        .nav-dots .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #f8bbd0;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: none;
-            padding: 0;
-        }
-
-        .nav-dots .dot.active {
-            background: #e91e63;
-            width: 32px;
-            border-radius: 8px;
-            box-shadow: 0 0 12px rgba(233, 30, 99, 0.6);
-        }
-
-        .nav-dots .dot:hover {
-            background: #f48fb1;
-            transform: scale(1.2);
-        }
-
-        /* ============================================================
-           PAGE COUNTER
-           ============================================================ */
-        .page-counter {
-            position: fixed;
-            top: 18px;
-            right: 22px;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.85);
-            color: #e91e63;
-            font-weight: 600;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 3px 10px rgba(233, 30, 99, 0.2);
-        }
-
-        /* ============================================================
-           ARROWS
-           ============================================================ */
-        .nav-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.92);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            color: #e91e63;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .nav-arrow:hover:not(:disabled) {
-            background: #e91e63;
-            color: white;
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 6px 22px rgba(233, 30, 99, 0.5);
-        }
-
-        .nav-arrow:active:not(:disabled) {
-            transform: translateY(-50%) scale(0.95);
-        }
-
-        .nav-arrow:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .nav-arrow.prev {
-            left: 18px;
-        }
-
-        .nav-arrow.next {
-            right: 18px;
-        }
-
-        /* ============================================================
-           FADE-IN
-           ============================================================ */
-        .fade-in {
-            animation: fadeInUp 0.8s ease both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scrollbar */
-        .page::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .page::-webkit-scrollbar-thumb {
-            background: #f48fb1;
-            border-radius: 10px;
-        }
-
-        .page::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        /* ============================================================
-           SWIPE HINT (muncul di HP)
-           ============================================================ */
-        .swipe-hint {
-            position: fixed;
-            bottom: 85px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9;
-            background: rgba(233, 30, 99, 0.85);
-            color: white;
-            font-size: 0.75rem;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 500;
-            display: none;
-            align-items: center;
-            gap: 6px;
-            animation: swipeHintPulse 2s ease infinite;
-            pointer-events: none;
-        }
-
-        @keyframes swipeHintPulse {
-
-            0%,
-            100% {
-                opacity: 0.9;
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* ============================================================
-           PROGRESS BAR
-           ============================================================ */
-        .progress-bar-romantic {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #e91e63, #ff80ab);
-            z-index: 11;
-            transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1);
-            box-shadow: 0 0 10px rgba(233, 30, 99, 0.6);
-            border-radius: 0 4px 4px 0;
-        }
-
-        /* ============================================================
-           RESPONSIVE — LAPTOP (≥992px)
-           ============================================================ */
-        @media (min-width: 992px) {
-            .card-custom {
-                max-width: 780px;
-                padding: 50px 55px;
-            }
-        }
-
-        /* ============================================================
-           RESPONSIVE — TABLET (768px - 991px)
-           ============================================================ */
-        @media (max-width: 991px) and (min-width: 768px) {
-            .card-custom {
-                max-width: 92%;
-                padding: 40px 34px;
-                border-radius: 24px;
-            }
-
-            .card-custom h1,
-            .card-custom .display-4 {
-                font-size: 2.2rem;
-            }
-
-            .card-custom h2,
-            .card-custom .fs-1 {
-                font-size: 2rem !important;
-            }
-
-            .card-custom h3 {
-                font-size: 1.6rem;
-            }
-
-            .card-custom p.fs-6 {
-                font-size: 1.05rem !important;
-                line-height: 1.85 !important;
-            }
-
-            .timeline-box h5 {
-                font-size: 1.2rem;
-            }
-
-            .timeline-box p {
-                font-size: 0.95rem !important;
-            }
-        }
-
-        /* ============================================================
-           RESPONSIVE — HP (≤767px) — DIPERBESAR
-           ============================================================ */
-        @media (max-width: 767px) {
-            .page {
-                padding: 75px 10px 100px;
-                align-items: flex-start;
-            }
-
-            /* 🔥 CARD DIPERBESAR — hampir full layar */
-            .card-custom {
-                padding: 34px 24px;
-                border-radius: 26px;
-                margin-top: 8px;
-                max-width: 100%;
-                width: 100%;
-                box-shadow: 0 12px 36px rgba(233, 30, 99, 0.3);
-            }
-
-            .card-custom:hover {
-                transform: none;
-            }
-
-            /* 🔥 JUDUL DIPERBESAR */
-            .card-custom h1,
-            .card-custom .display-4 {
-                font-size: 2.1rem;
-                line-height: 1.25;
-                letter-spacing: 0.3px;
-            }
-
-            .card-custom h2,
-            .card-custom .fs-1 {
-                font-size: 1.95rem !important;
-                line-height: 1.3;
-            }
-
-            .card-custom h3 {
-                font-size: 1.6rem;
-            }
-
-            /* 🔥 PARAGRAF DIPERBESAR — lebih nyaman dibaca */
-            .card-custom p.fs-6 {
-                font-size: 1.08rem !important;
-                line-height: 1.85 !important;
-                letter-spacing: 0.2px;
-            }
-
-            .card-custom p.lead {
-                font-size: 1.05rem !important;
-                line-height: 1.7 !important;
-            }
-
-            /* 🔥 TANDA TANGAN DIPERBESAR */
-            .card-custom .romantic-font.fs-3 {
-                font-size: 2.1rem !important;
-            }
-
-            /* 🔥 ICON HATI DIPERBESAR */
-            .heart-icon.display-1 {
-                font-size: 4.2rem;
-            }
-
-            .heart-icon.display-5 {
-                font-size: 2.8rem;
-            }
-
-            .heart-icon.display-4 {
-                font-size: 3.5rem;
-            }
-
-            /* Nav arrow di bawah */
-            .nav-arrow {
-                width: 46px;
-                height: 46px;
-                font-size: 1.2rem;
-                top: auto;
-                bottom: 95px;
-                transform: none;
-            }
-
-            .nav-arrow:hover:not(:disabled) {
-                transform: scale(1.1);
-            }
-
-            .nav-arrow:active:not(:disabled) {
-                transform: scale(0.95);
-            }
-
-            .nav-arrow.prev {
-                left: 14px;
-            }
-
-            .nav-arrow.next {
-                right: 14px;
-            }
-
-            /* Nav dots diperbesar */
-            .nav-dots {
-                bottom: 18px;
-                gap: 9px;
-                padding: 10px 16px;
-            }
-
-            .nav-dots .dot {
-                width: 11px;
-                height: 11px;
-            }
-
-            .nav-dots .dot.active {
-                width: 28px;
-            }
-
-            .page-counter {
-                top: 12px;
-                right: 12px;
-                font-size: 0.85rem;
-                padding: 6px 14px;
-            }
-
-            .swipe-hint {
-                display: flex;
-                font-size: 0.8rem;
-                padding: 7px 15px;
-                bottom: 100px;
-            }
-
-            /* Timeline diperbesar */
-            .timeline-box {
-                margin-bottom: 24px;
-                padding-left: 22px;
-                border-left-width: 4px;
-            }
-
-            .timeline-box::before {
-                width: 22px;
-                height: 22px;
-                font-size: 11px;
-                left: -14px;
-            }
-
-            .timeline-box h5 {
-                font-size: 1.15rem;
-                margin-bottom: 6px !important;
-            }
-
-            .timeline-box p {
-                font-size: 1rem !important;
-                line-height: 1.65 !important;
-            }
-
-            /* Button diperbesar */
-            .btn-romantic {
-                padding: 14px 32px;
-                font-size: 1.05rem;
-                border-radius: 32px;
-            }
-
-            /* Pesan rahasia card */
-            #pesanRahasia .card-body p {
-                font-size: 1.1rem !important;
-                line-height: 1.7 !important;
-            }
-        }
-
-        /* ============================================================
-           RESPONSIVE — HP KECIL (≤400px) — TETAP BESAR
-           ============================================================ */
-        @media (max-width: 400px) {
-            .page {
-                padding: 70px 8px 95px;
-            }
-
-            .card-custom {
-                padding: 28px 18px;
-                border-radius: 22px;
-                margin-top: 6px;
-            }
-
-            .card-custom h1,
-            .card-custom .display-4 {
-                font-size: 1.85rem;
-                line-height: 1.25;
-            }
-
-            .card-custom h2,
-            .card-custom .fs-1 {
-                font-size: 1.7rem !important;
-            }
-
-            .card-custom h3 {
-                font-size: 1.45rem;
-            }
-
-            .card-custom p.fs-6 {
-                font-size: 1rem !important;
-                line-height: 1.8 !important;
-            }
-
-            .card-custom p.lead {
-                font-size: 0.98rem !important;
-            }
-
-            .card-custom .romantic-font.fs-3 {
-                font-size: 1.85rem !important;
-            }
-
-            .heart-icon.display-1 {
-                font-size: 3.6rem;
-            }
-
-            .heart-icon.display-5 {
-                font-size: 2.5rem;
-            }
-
-            .heart-icon.display-4 {
-                font-size: 3rem;
-            }
-
-            .nav-dots {
-                gap: 7px;
-                padding: 8px 14px;
-            }
-
-            .nav-dots .dot {
-                width: 10px;
-                height: 10px;
-            }
-
-            .nav-dots .dot.active {
-                width: 24px;
-            }
-
-            .swipe-hint {
-                font-size: 0.75rem;
-                padding: 6px 13px;
-                bottom: 92px;
-            }
-
-            .nav-arrow {
-                width: 42px;
-                height: 42px;
-                font-size: 1.05rem;
-                bottom: 88px;
-            }
-
-            .timeline-box h5 {
-                font-size: 1.08rem;
-            }
-
-            .timeline-box p {
-                font-size: 0.95rem !important;
-            }
-
-            .btn-romantic {
-                padding: 13px 28px;
-                font-size: 1rem;
-            }
-        }
-
-        /* ============================================================
-           LANDSCAPE HP — kompak
-           ============================================================ */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .page {
-                padding: 15px 70px;
-                align-items: center;
-            }
-
-            .card-custom {
-                padding: 22px 26px;
-                max-height: 90vh;
-                overflow-y: auto;
-            }
-
-            .card-custom h1,
-            .card-custom .display-4 {
-                font-size: 1.5rem;
-            }
-
-            .card-custom h2,
-            .card-custom .fs-1 {
-                font-size: 1.35rem !important;
-            }
-
-            .card-custom p.fs-6 {
-                font-size: 0.92rem !important;
-                line-height: 1.6 !important;
-            }
-
-            .heart-icon.display-1 {
-                font-size: 2.8rem;
-            }
-
-            .nav-arrow {
-                top: 50%;
-                bottom: auto;
-                transform: translateY(-50%);
-            }
-
-            .nav-arrow:hover:not(:disabled) {
-                transform: translateY(-50%) scale(1.1);
-            }
-
-            .nav-dots {
-                bottom: 8px;
-                padding: 6px 12px;
-            }
-
-            .swipe-hint {
-                display: none;
-            }
-
-            .timeline-box {
-                margin-bottom: 14px;
-            }
-        }
-
-        /* ============================================================
-           REDUCE MOTION — aksesibilitas
-           ============================================================ */
-        @media (prefers-reduced-motion: reduce) {
-
-            .animated-bg,
-            .bokeh,
-            .hearts-bg span,
-            .sparkle,
-            .heart-icon,
-            .card-custom::before {
-                animation: none !important;
-            }
-
-            .page {
-                transition: opacity 0.4s ease, visibility 0.4s;
-                transform: none !important;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Ulang Tahun Nazira Wandiny Tersayang ❤️</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts: Dancing Script, Playfair Display, & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --romantic-rose: #f43f5e;
+      --romantic-pink: #ec4899;
+      --romantic-bg: #0d0712;
+      --romantic-card: rgba(28, 14, 32, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--romantic-bg);
+      color: #ffe4e6;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .font-romantic {
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .font-serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Ambient Glow Spots */
+    .ambient-glow-1 {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(40px);
+    }
+
+    .ambient-glow-2 {
+      position: fixed;
+      bottom: 5%;
+      right: 5%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(50px);
+    }
+
+    /* Floating Hearts Animation */
+    .heart-particle {
+      position: fixed;
+      bottom: -30px;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+      animation: floatUp 11s linear infinite;
+      filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.5));
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.85;
+      }
+
+      85% {
+        opacity: 0.85;
+      }
+
+      100% {
+        transform: translateY(-110vh) scale(1.15) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    /* Click Spawned Heart */
+    .click-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      user-select: none;
+      animation: popUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.8));
+    }
+
+    @keyframes popUp {
+      0% {
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -120px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Glassmorphic Romantic Cards */
+    .glass-card {
+      background: var(--romantic-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(244, 63, 94, 0.28);
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-romantic {
+      background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 50rem;
+      padding: 12px 30px;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .btn-romantic:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 28px rgba(244, 63, 94, 0.6);
+      color: #ffffff;
+    }
+
+    .btn-romantic:active {
+      transform: scale(0.97);
+    }
+
+    /* Candle Flame Animation */
+    @keyframes flameFlicker {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(-1deg);
+        opacity: 0.95;
+      }
+
+      25% {
+        transform: scale(1.08, 0.92) rotate(1.5deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(0.94, 1.05) rotate(-0.5deg);
+        opacity: 0.85;
+      }
+
+      75% {
+        transform: scale(1.04, 0.98) rotate(1deg);
+        opacity: 1;
+      }
+    }
+
+    .flame-element {
+      width: 14px;
+      height: 22px;
+      background: radial-gradient(ellipse at bottom, #ffffff 0%, #fde047 35%, #fb923c 70%, #ea580c 100%);
+      border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 16px rgba(251, 191, 36, 0.9);
+      animation: flameFlicker 1.8s ease-in-out infinite;
+      margin: 0 auto;
+      cursor: pointer;
+      transform-origin: bottom center;
+    }
+
+    /* Vintage Love Letter */
+    .parchment-letter {
+      background-color: #fffaf2;
+      color: #292524;
+      border: 4px solid #ebd5c1;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating Music Widget */
+    .music-widget {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1050;
+      background: rgba(13, 7, 18, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      border-radius: 50rem;
+      padding: 7px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fda4af;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .music-widget:hover {
+      background: rgba(13, 7, 18, 0.9);
+      border-color: rgba(244, 63, 94, 0.6);
+      color: #ffffff;
+      transform: scale(1.03);
+    }
+
+    .sound-bars span {
+      display: inline-block;
+      width: 3px;
+      height: 12px;
+      background-color: #f43f5e;
+      border-radius: 2px;
+      margin: 0 1px;
+      transition: height 0.2s;
+    }
+
+    .sound-bars.playing span:nth-child(1) {
+      animation: barBounce 0.8s ease-in-out infinite alternate;
+    }
+
+    .sound-bars.playing span:nth-child(2) {
+      animation: barBounce 0.6s ease-in-out infinite alternate 0.2s;
+    }
+
+    .sound-bars.playing span:nth-child(3) {
+      animation: barBounce 0.9s ease-in-out infinite alternate 0.4s;
+    }
+
+    @keyframes barBounce {
+      0% {
+        height: 4px;
+      }
+
+      100% {
+        height: 16px;
+      }
+    }
+
+    /* Intro Overlay with Romantic Envelope */
+    #introOverlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #230e25 0%, #0c050d 100%);
+      z-index: 9990;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+    }
+
+    .envelope-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f43f5e, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 0 35px rgba(244, 63, 94, 0.6);
+      font-size: 38px;
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.5));
+      }
+
+      50% {
+        transform: scale(1.06);
+        filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.8));
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- ============================================================
-         ANIMATED BACKGROUND LAYERS
-         ============================================================ -->
-    <div class="animated-bg"></div>
-    <div class="bokeh-layer" id="bokehLayer"></div>
-    <div class="hearts-bg" id="heartsBg"></div>
-    <div class="sparkles" id="sparkles"></div>
+  <!-- Ambient Light Effects -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
 
-    <!-- Progress Bar -->
-    <div class="progress-bar-romantic" id="progressBar" style="width: 20%"></div>
-
-    <!-- Page Counter -->
-    <div class="page-counter" id="pageCounter">1 / 5</div>
-
-    <!-- Navigation Arrows -->
-    <button class="nav-arrow prev" id="prevBtn" onclick="prevPage()" aria-label="Sebelumnya">
-        <i class="bi bi-chevron-left"></i>
-    </button>
-    <button class="nav-arrow next" id="nextBtn" onclick="nextPage()" aria-label="Berikutnya">
-        <i class="bi bi-chevron-right"></i>
-    </button>
-
-    <!-- Swipe Hint (mobile only) -->
-    <div class="swipe-hint" id="swipeHint">
-        <i class="bi bi-arrow-left-right"></i> Geser untuk navigasi
+  <!-- INTRO SCREEN (Unlocks browser audio autoplay on first user touch) -->
+  <div id="introOverlay">
+    <div class="glass-card p-4 p-md-5 text-center" style="max-width: 460px; width: 100%;">
+      <div class="envelope-box">💌</div>
+      <p class="text-uppercase tracking-wider small mb-2" style="color: #fb7185; letter-spacing: 2px;">
+        17 OKTOBER · HARI SPESIALMU
+      </p>
+      <h2 class="font-serif-title text-white mb-2" style="font-size: 28px;">
+        Kejutan Manis untuk Nazira Wandiny
+      </h2>
+      <p class="small mb-4" style="color: #fda4af; line-height: 1.6;">
+        Sentuh tombol di bawah ini untuk membuka kado ucapan, melodi romantis, dan pesan yang ditulis khusus dari lubuk
+        hati terdalam.
+      </p>
+      <button class="btn btn-romantic w-100" onclick="startCelebration()">
+        Buka Kejutan Cinta ❤️
+      </button>
+      <div class="mt-3 small" style="color: rgba(253, 164, 175, 0.6); font-size: 11px;">
+        Dilengkapi musik otomatis & efek kembang api
+      </div>
     </div>
+  </div>
 
-    <!-- ============================================================
-         PAGES
-         ============================================================ -->
-    <div class="page-container">
+  <!-- FLOATING HEARTS CONTAINER -->
+  <div id="heartsContainer"></div>
 
-        <!-- PAGE 1: HERO -->
-        <section class="page active" data-page="0">
-            <div class="card-custom text-center">
-                <i class="bi bi-heart-fill display-1 heart-icon"></i>
-                <h1 class="display-4 romantic-font text-danger mt-3 fw-bold fade-in">
-                    Happy Anniversary,<br>Sayangku Nazira Wandiny
-                </h1>
-                <p class="lead text-muted mt-3 fade-in">
-                    "Terima kasih telah berjalan bersamaku dan mewarnai setiap hariku."
-                </p>
-                <button class="btn btn-romantic mt-4" onclick="nextPage()">
-                    <i class="bi bi-envelope-heart-fill me-2"></i> Buka Ucapan
-                </button>
-            </div>
-        </section>
+  <!-- FLOATING MUSIC PLAYER BAR -->
+  <div class="music-widget" onclick="toggleMusic()" title="Putar atau Jeda Musik Romantis">
+    <div id="soundBars" class="sound-bars">
+      <span></span><span></span><span></span>
+    </div>
+    <span id="musicStatus">Musik: Aktif 🎵</span>
+  </div>
 
-        <!-- PAGE 2: SURAT CINTA -->
-        <section class="page" data-page="1">
-            <div class="card-custom">
-                <h2 class="romantic-font text-center text-danger mb-4 fs-1 fade-in">
-                    Untuk Kamu yang Spesial
-                </h2>
-                <p class="fs-6 lh-lg fade-in">
-                    Selamat hari jadi yang kesekian sayangku Nazira. Tidak terasa waktu berlalu begitu cepat saat
-                    aku bersamamu. Terima kasih sudah menjadi bagian terbaik dalam hidupku, menjadi tempatku pulang,
-                    dan selalu ada baik dalam suka maupun duka.
-                </p>
-                <p class="fs-6 lh-lg fade-in">
-                    Aku bersyukur atas setiap tawa yang kita bagi, setiap rintangan yang berhasil kita lewati
-                    bersama, dan setiap kenangan indah yang telah kita ukir. Semoga cinta kita selalu bertumbuh,
-                    makin kuat, dan dipenuhi kebahagiaan setiap harinya.
-                </p>
-                <p class="fs-6 lh-lg text-end fw-bold mt-4 fade-in">
-                    Dengan penuh kasih,<br>
-                    <span class="text-danger romantic-font fs-3">Aa Ahmad</span>
-                </p>
-            </div>
-        </section>
+  <!-- MAIN CONTAINER -->
+  <div class="container py-5 position-relative" style="z-index: 2;">
 
-        <!-- PAGE 3: MAAF -->
-        <section class="page" data-page="2">
-            <div class="card-custom">
-                <div class="text-center mb-3">
-                    <i class="bi bi-emoji-frown display-5 text-danger heart-icon"></i>
+    <!-- HERO HEADER -->
+    <header class="text-center my-4 my-md-5">
+      <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3"
+        style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.3); font-size: 12px; color: #fb7185; letter-spacing: 1px;">
+        <span>📅 17 Oktober</span>
+        <span>·</span>
+        <span>Hari Lahir Bidadariku Nazira</span>
+      </div>
+      <h1 class="display-3 font-serif-title text-white fw-bold">
+        Selamat Ulang Tahun, <br class="d-md-none">
+        <span class="font-romantic" style="color: #fb7185; font-size: 1.25em;">Nazira Wandiny</span> ❤️
+      </h1>
+      <p class="font-romantic display-6 mt-3" style="color: rgba(255, 228, 230, 0.85); font-size: 28px;">
+        "Semoga setiap langkah dan harimu selalu dipenuhi bahagia dan cinta."
+      </p>
+    </header>
+
+    <!-- ROW: VIRTUAL CAKE & SURAT CINTA -->
+    <div class="row g-4 justify-content-center align-items-stretch mb-5">
+
+      <!-- VIRTUAL BIRTHDAY CAKE -->
+      <div class="col-lg-6">
+        <div class="glass-card p-4 p-md-5 text-center h-100 d-flex flex-column justify-content-between">
+          <div>
+            <span class="badge rounded-pill mb-2 px-3 py-1.5"
+              style="background: rgba(244, 63, 94, 0.3); border: 1px solid rgba(244, 63, 94, 0.4); color: #ffe4e6;">
+              Tiup Lilin & Sampaikan Doa ✨
+            </span>
+            <h3 class="font-serif-title text-white mb-1">Make a Wish, Nazira!</h3>
+            <p class="small text-white-50 mb-4">
+              Pejamkan matamu sejenak, ucapkan doa terbaik di hatimu, lalu klik tombol untuk meniup lilinnya ya.
+            </p>
+          </div>
+
+          <!-- Cake Graphic -->
+          <div class="py-3 select-none">
+            <!-- Candles -->
+            <div class="d-flex justify-content-center gap-4 mb-2">
+              <div onclick="blowCandles()" style="cursor: pointer;" title="Klik untuk tiup lilin">
+                <div id="flame1" class="flame-element"></div>
+                <div style="width: 2px; height: 6px; background: #333; margin: 0 auto;"></div>
+                <div
+                  style="width: 12px; height: 42px; background: linear-gradient(#fbcfe8, #f43f5e); border-radius: 2px; margin: 0 auto; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
                 </div>
-                <h2 class="romantic-font text-center text-danger mb-4 fs-1 fade-in">
-                    Maafkan Aku Ya, Sayang
-                </h2>
-                <p class="fs-6 lh-lg fade-in">
-                    Nazira sayang, di hari yang spesial ini aku ingin meminta maaf dari lubuk hatiku yang paling
-                    dalam. Maafin aku ya kalau selama ini aku masih punya banyak kekurangan dalam sama kamu.
-                    Aku masih sering salah, baik dari sikap, perilaku, kata-kata, dan kadang aku kurang peka
-                    sama perasaan kamu.
-                </p>
-                <p class="fs-6 lh-lg fade-in">
-                    Aku sadar aku bukan orang yang sempurna, tapi aku selalu berusaha jadi lebih baik untuk kamu
-                    dan untuk kita. Terima kasih sudah sabar menghadapi aku, terima kasih sudah tetap bertahan
-                    dan memilih aku setiap hari.
-                </p>
-                <p class="fs-6 lh-lg fade-in">
-                    Aku janji akan terus belajar, terus memperbaiki diri, dan terus mencintai kamu dengan lebih
-                    baik lagi. Maafkan aku ya, sayang. ❤️
-                </p>
-                <p class="fs-6 lh-lg text-end fw-bold mt-4 fade-in">
-                    Yang selalu mencintaimu,<br>
-                    <span class="text-danger romantic-font fs-3">Aa Ahmad</span>
-                </p>
+              </div>
+              <div onclick="blowCandles()" style="cursor: pointer;" title="Klik untuk tiup lilin">
+                <div id="flame2" class="flame-element"></div>
+                <div style="width: 2px; height: 6px; background: #333; margin: 0 auto;"></div>
+                <div
+                  style="width: 12px; height: 48px; background: linear-gradient(#fbcfe8, #f43f5e); border-radius: 2px; margin: 0 auto; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+                </div>
+              </div>
+              <div onclick="blowCandles()" style="cursor: pointer;" title="Klik untuk tiup lilin">
+                <div id="flame3" class="flame-element"></div>
+                <div style="width: 2px; height: 6px; background: #333; margin: 0 auto;"></div>
+                <div
+                  style="width: 12px; height: 42px; background: linear-gradient(#fbcfe8, #f43f5e); border-radius: 2px; margin: 0 auto; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+                </div>
+              </div>
             </div>
-        </section>
 
-        <!-- PAGE 4: TIMELINE -->
-        <section class="page" data-page="3">
-            <div class="card-custom">
-                <h3 class="text-center text-danger mb-4 fw-bold fade-in">
-                    Perjalanan Cinta Kita
+            <!-- Top Cake Tier -->
+            <div
+              style="width: 170px; height: 55px; background: #ffe4e6; border-radius: 16px 16px 0 0; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.25); position: relative; border-bottom: 4px solid #fda4af;">
+              <span class="text-dark small fw-bold font-romantic"
+                style="font-size: 20px; line-height: 55px;">19tahun</span>
+            </div>
+            <!-- Bottom Cake Tier -->
+            <div
+              style="width: 235px; height: 75px; background: #fda4af; border-radius: 20px 20px 0 0; margin: 0 auto; box-shadow: 0 6px 16px rgba(0,0,0,0.3); position: relative;">
+              <span class="font-romantic text-dark fw-bold" style="font-size: 26px; line-height: 75px;">Happy Birthday
+                Nazira</span>
+            </div>
+            <!-- Cake Plate -->
+            <div
+              style="width: 275px; height: 12px; background: #ffffff; border-radius: 50rem; margin: 0 auto; box-shadow: 0 6px 18px rgba(0,0,0,0.4);">
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <button id="blowBtn" class="btn btn-romantic" onclick="blowCandles()">
+              Tiup Lilin Sekarang 🎂
+            </button>
+            <p id="wishAlert" class="mt-3 text-warning small d-none font-romantic" style="font-size: 22px;">
+              ✨ Doamu telah terbang ke langit! Semoga bahagia selalu bersamaku, Nazira tersayang! ✨
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VINTAGE PARCHMENT LOVE LETTER -->
+      <div class="col-lg-6">
+        <div class="parchment-letter p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div
+              class="border-bottom border-secondary-subtle pb-3 mb-3 d-flex justify-content-between align-items-center">
+              <div>
+                <small class="text-uppercase text-muted fw-bold" style="font-size: 11px; letter-spacing: 1px;">Surat
+                  Tulus Dari Hati</small>
+                <h3 class="font-romantic text-danger mb-0" style="font-size: 34px;">Untuk Bidadariku, Nazira Wandiny
                 </h3>
-
-                <div class="timeline-box">
-                    <h5 class="fw-bold mb-1">Pertama Kali Bertemu</h5>
-                    <p class="text-muted small mb-0">
-                        Hari di mana semuanya dimulai dan senyumanmu mengubah duniaku.
-                    </p>
-                </div>
-
-                <div class="timeline-box">
-                    <h5 class="fw-bold mb-1">Resmi Bersama</h5>
-                    <p class="text-muted small mb-0">
-                        Keputusan terbaik dalam hidupku adalah memilih untuk berjalan bersamamu.
-                    </p>
-                </div>
-
-                <div class="timeline-box">
-                    <h5 class="fw-bold mb-1">Hari Ini &amp; Selamanya</h5>
-                    <p class="text-muted small mb-0">
-                        Merayakan setiap momen indah dan siap menyambut masa depan bersama.
-                    </p>
-                </div>
+              </div>
+              <div class="text-end text-muted small" style="font-size: 12px;">
+                17 Oktober ❤️
+              </div>
             </div>
-        </section>
 
-        <!-- PAGE 5: PESAN RAHASIA -->
-        <section class="page" data-page="4">
-            <div class="card-custom text-center">
-                <i class="bi bi-envelope-heart-fill display-4 text-danger heart-icon mb-3"></i>
-                <h2 class="romantic-font text-danger mb-4 fs-1 fade-in">
-                    Pesan Spesial Untukmu
-                </h2>
-                <button class="btn btn-romantic" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#pesanRahasia">
-                    <i class="bi bi-envelope-heart-fill me-2"></i> Klik untuk Pesan Rahasia
-                </button>
+            <div
+              style="font-family: 'Playfair Display', Georgia, serif; font-size: 14.5px; line-height: 1.85; text-align: justify; color: #332a26;">
+              Selamat ulang tahun untuk bidadari terindah ku Nazira Wandiny ❤️<br><br>
+              selamat bertambah usia yaa cintakuuu. semoga di umur kamu yang sekarang, semua hal baik selalu datang ke
+              hidup kamu. semoga kamu selalu sehat, panjang umur, dilancarkan semua urusannya, dimudahkan rezekinya, dan
+              apa pun yang sedang kamu usahakan bisa tercapai satu per satu.
+              aku mungkin belum bisa jadi pacar yang sempurna, belum bisa selalu ngasih apa yang kamu mau, dan terkadang
+              masih banyak kurangnya. tapi aku mau kamu tahu kalau aku selalu bersyukur bisa kenal kamu dan punya kamu
+              di hidup aku. makasih yaa sayang, udah hadir dan jadi salah satu alasan aku buat bahagia. makasih juga
+              udah bertahan sejauh ini sama aku, dengan segala kurang dan lebihnya aku.
 
-                <div class="collapse mt-4" id="pesanRahasia">
-                    <div class="card card-body border-danger text-danger"
-                        style="border-radius: 16px; background: #fff5f8;">
-                        <p class="mb-0 fw-semibold fs-5">
-                            "Aku menyukaimu bukan hanya karena siapa dirimu, tetapi karena bagaimana jadinya
-                            diriku saat aku bersamamu. I Love You Always! ❤️"
-                        </p>
-                    </div>
-                </div>
+              semoga di umur yang baru ini kamu makin dewasa, makin kuat, makin bahagia, dan selalu dikelilingi
+              orang-orang yang tulus sayang sama kamu. aku juga berharap hubungan kita bisa terus bertahan, bisa
+              sama-sama belajar jadi lebih baik, saling ngerti, saling jaga, dan saling milih satu sama lain meskipun
+              nantinya ada banyak hal yang harus kita lewatin.
 
-                <p class="text-muted mt-4 small fade-in">
-                    Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> khusus untuk pasangan terbaik di dunia.
-                </p>
+              sekali lagi, happy birthday yaa sayangkuuu, perempuan kesayangan aku ❤️ semoga semua doa baik yang kamu
+              simpan dalam hati bisa Allah kabulkan di waktu yang paling tepat. jangan lupa bahagia yaa, karena senyum
+              kamu itu berharga banget buat aku. aku sayang kamu, lebih dari yang kadang bisa aku ungkapin lewat
+              kata-kata. semoga aku masih bisa nemenin kamu di ulang tahun-ulang tahun berikutnya, dan semoga kita punya
+              lebih banyak cerita indah buat dikenang bareng-bareng.
             </div>
-        </section>
+          </div>
+
+          <div class="border-top border-secondary-subtle pt-3 mt-4 text-end">
+            <small class="text-muted fst-italic">Dengan segenap cinta dan ketulusan,</small>
+            <div class="font-romantic text-danger" style="font-size: 30px;">A Ahmad,Kekasihmu yang Selalu Mencintaimu
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
 
-    <!-- Navigation Dots -->
-    <div class="nav-dots" id="navDots"></div>
+    <!-- 3 ALASAN CINTA -->
+    <div class="text-center my-5">
+      <span class="badge rounded-pill px-3 py-1.5 mb-2"
+        style="background: rgba(244, 63, 94, 0.25); border: 1px solid rgba(244, 63, 94, 0.4); color: #fb7185;">
+        Dari Lubuk Hatiku
+      </span>
+      <h2 class="font-serif-title text-white">Kenapa Aku Begitu Mencintaimu, Nazira?</h2>
+    </div>
 
-    <!-- Bootstrap 5 JavaScript Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="glass-card p-4 h-100">
+          <div class="display-6 mb-2" style="color: #fb7185;">01</div>
+          <h5 class="text-white font-serif-title">Senyumanmu yang Menenangkan</h5>
+          <p class="small text-white-50">Tak peduli seberat apa hariku, melihat senyum manismu selalu berhasil membuat
+            seluruh lelah dan bebanku sirna seketika.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass-card p-4 h-100">
+          <div class="display-6 mb-2" style="color: #fb7185;">02</div>
+          <h5 class="text-white font-serif-title">Ketulusan Hatimu</h5>
+          <p class="small text-white-50">Caramu memperlakukan aku dengan lembut, sabar, dan penuh kasih membuatku selalu
+            bersyukur semesta mempertemukan kita.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass-card p-4 h-100">
+          <div class="display-6 mb-2" style="color: #fb7185;">03</div>
+          <h5 class="text-white font-serif-title">Rumah Tempat Hatiku Pulang</h5>
+          <p class="small text-white-50">Bersamamu, aku merasa utuh, tenang, dan bisa menjadi diriku sendiri tanpa ada
+            rasa takut ataupun keraguan.</p>
+        </div>
+      </div>
+    </div>
 
-    <script>
-        /* ============================================================
-           1. GENERATE BOKEH ORBS
-           ============================================================ */
-        (function createBokeh() {
-            const layer = document.getElementById('bokehLayer');
-            const isMobile = window.innerWidth < 768;
-            const count = isMobile ? 8 : 14;
-            for (let i = 0; i < count; i++) {
-                const b = document.createElement('div');
-                b.className = 'bokeh';
-                const size = 60 + Math.random() * 140;
-                b.style.width = size + 'px';
-                b.style.height = size + 'px';
-                b.style.left = Math.random() * 100 + '%';
-                b.style.bottom = (-20 - Math.random() * 30) + '%';
-                b.style.animationDuration = (14 + Math.random() * 14) + 's';
-                b.style.animationDelay = (Math.random() * 12) + 's';
-                layer.appendChild(b);
-            }
-        })();
+    <!-- FOOTER -->
+    <footer class="text-center py-4 border-top border-secondary text-white-50 small mt-5">
+      Dibuat dengan cinta tulus dan abadi untuk Nazira Wandiny ❤️ Selamat Ulang Tahun!
+    </footer>
 
-        /* ============================================================
-           2. FLOATING HEARTS
-           ============================================================ */
-        (function createHearts() {
-            const heartsBg = document.getElementById('heartsBg');
-            const heartChars = ['❤️', '💕', '💖', '💗', '💓', '🌸', '💞', '💝'];
-            const isMobile = window.innerWidth < 768;
-            const heartCount = isMobile ? 14 : 22;
+  </div>
 
-            for (let i = 0; i < heartCount; i++) {
-                const span = document.createElement('span');
-                span.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
-                span.style.left = Math.random() * 100 + '%';
-                span.style.fontSize = (14 + Math.random() * 26) + 'px';
-                span.style.animationDuration = (8 + Math.random() * 12) + 's';
-                span.style.animationDelay = (Math.random() * 12) + 's';
-                heartsBg.appendChild(span);
-            }
-        })();
+  <!-- BOOTSTRAP 5 BUNDLE JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        /* ============================================================
-           3. SPARKLES
-           ============================================================ */
-        (function createSparkles() {
-            const container = document.getElementById('sparkles');
-            const isMobile = window.innerWidth < 768;
-            const count = isMobile ? 20 : 40;
-            for (let i = 0; i < count; i++) {
-                const s = document.createElement('div');
-                s.className = 'sparkle';
-                s.style.left = Math.random() * 100 + '%';
-                s.style.top = Math.random() * 100 + '%';
-                s.style.animationDuration = (1.5 + Math.random() * 3) + 's';
-                s.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(s);
-            }
-        })();
+  <!-- WEB AUDIO API BACKGROUND MUSIC SYNTHESIZER -->
+  <script>
+    let audioCtx = null;
+    let isPlaying = false;
+    let timeoutId = null;
+    let noteIndex = 0;
 
-        /* ============================================================
-           4. PAGE NAVIGATION — 3D FLIP
-           ============================================================ */
-        const pages = document.querySelectorAll('.page');
-        const totalPages = pages.length;
-        let currentPage = 0;
-        let isAnimating = false;
+    const noteFreqs = {
+      C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00, B4: 493.88,
+      C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99
+    };
 
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const pageCounter = document.getElementById('pageCounter');
-        const navDots = document.getElementById('navDots');
-        const progressBar = document.getElementById('progressBar');
-        const swipeHint = document.getElementById('swipeHint');
+    // Happy Birthday romantic acoustic score
+    const melody = [
+      { note: 'G4', dur: 0.4 }, { note: 'G4', dur: 0.3 }, { note: 'A4', dur: 0.7 }, { note: 'G4', dur: 0.7 }, { note: 'C5', dur: 0.7 }, { note: 'B4', dur: 1.4 },
+      { note: 'G4', dur: 0.4 }, { note: 'G4', dur: 0.3 }, { note: 'A4', dur: 0.7 }, { note: 'G4', dur: 0.7 }, { note: 'D5', dur: 0.7 }, { note: 'C5', dur: 1.4 },
+      { note: 'G4', dur: 0.4 }, { note: 'G4', dur: 0.3 }, { note: 'G5', dur: 0.7 }, { note: 'E5', dur: 0.7 }, { note: 'C5', dur: 0.7 }, { note: 'B4', dur: 0.7 }, { note: 'A4', dur: 1.2 },
+      { note: 'F5', dur: 0.4 }, { note: 'F5', dur: 0.3 }, { note: 'E5', dur: 0.7 }, { note: 'C5', dur: 0.7 }, { note: 'D5', dur: 0.7 }, { note: 'C5', dur: 2.2 }
+    ];
 
-        /* Build nav dots */
-        pages.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.className = 'dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', 'Halaman ' + (i + 1));
-            dot.addEventListener('click', () => goToPage(i));
-            navDots.appendChild(dot);
-        });
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
 
-        const dots = document.querySelectorAll('.nav-dots .dot');
+    function playNote(freq, dur) {
+      if (!audioCtx || !isPlaying) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-        function updateUI() {
-            dots.forEach((d, i) => d.classList.toggle('active', i === currentPage));
-            pageCounter.textContent = (currentPage + 1) + ' / ' + totalPages;
-            prevBtn.disabled = currentPage === 0;
-            nextBtn.disabled = currentPage === totalPages - 1;
-            progressBar.style.width = ((currentPage + 1) / totalPages * 100) + '%';
-        }
+      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
 
-        function goToPage(index) {
-            if (index === currentPage || index < 0 || index >= totalPages || isAnimating) return;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    }
 
-            isAnimating = true;
+    function loopMelody() {
+      if (!isPlaying) return;
+      const current = melody[noteIndex % melody.length];
+      playNote(noteFreqs[current.note] || 440, current.dur);
+      noteIndex = (noteIndex + 1) % melody.length;
+      timeoutId = setTimeout(loopMelody, current.dur * 640);
+    }
 
-            const direction = index > currentPage ? 'next' : 'prev';
-            const oldPage = pages[currentPage];
-            const newPage = pages[index];
+    function toggleMusic() {
+      initAudio();
+      const soundBars = document.getElementById('soundBars');
+      const musicStatus = document.getElementById('musicStatus');
+      if (isPlaying) {
+        isPlaying = false;
+        clearTimeout(timeoutId);
+        soundBars.classList.remove('playing');
+        musicStatus.innerText = 'Musik: Dijeda 🔇';
+      } else {
+        isPlaying = true;
+        soundBars.classList.add('playing');
+        musicStatus.innerText = 'Musik: Aktif 🎵';
+        loopMelody();
+      }
+    }
 
-            /* Keluar halaman lama */
-            oldPage.classList.remove('active');
-            oldPage.classList.add(direction === 'next' ? 'leaving-next' : 'leaving-prev');
+    function startCelebration() {
+      const overlay = document.getElementById('introOverlay');
+      overlay.style.opacity = '0';
+      overlay.style.visibility = 'hidden';
+      setTimeout(() => overlay.remove(), 800);
 
-            setTimeout(() => {
-                oldPage.classList.remove('leaving-next', 'leaving-prev');
-            }, 1000);
+      initAudio();
+      isPlaying = true;
+      document.getElementById('soundBars').classList.add('playing');
+      document.getElementById('musicStatus').innerText = 'Musik: Aktif 🎵';
+      loopMelody();
+      triggerGrandConfetti();
+    }
 
-            /* Masuk halaman baru */
-            newPage.classList.add('active');
+    function triggerGrandConfetti() {
+      confetti({
+        particleCount: 100,
+        spread: 90,
+        origin: { y: 0.6 },
+        colors: ['#f43f5e', '#ec4899', '#fda4af', '#fbbf24', '#ffffff']
+      });
+    }
 
-            /* Re-trigger animasi dalam halaman */
-            newPage.querySelectorAll('.fade-in, .timeline-box').forEach(el => {
-                el.style.animation = 'none';
-                void el.offsetWidth;
-                el.style.animation = '';
-            });
+    function blowCandles() {
+      document.getElementById('flame1').style.display = 'none';
+      document.getElementById('flame2').style.display = 'none';
+      document.getElementById('flame3').style.display = 'none';
+      document.getElementById('wishAlert').classList.remove('d-none');
+      document.getElementById('blowBtn').innerText = 'Lilin Telah Ditiup ✨';
+      triggerGrandConfetti();
+    }
 
-            currentPage = index;
-            updateUI();
+    // Spawn gentle floating background hearts
+    function createBackgroundHearts() {
+      const container = document.getElementById('heartsContainer');
+      const emojis = ['❤️', '💖', '💕', '💗'];
+      for (let i = 0; i < 22; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.innerHTML = emojis[i % emojis.length];
+        heart.style.left = (Math.random() * 96) + '%';
+        heart.style.fontSize = (Math.random() * 16 + 14) + 'px';
+        heart.style.animationDuration = (Math.random() * 6 + 7) + 's';
+        heart.style.animationDelay = (Math.random() * 9) + 's';
+        container.appendChild(heart);
+      }
+    }
+    createBackgroundHearts();
 
-            /* Tutup collapse saat pindah halaman */
-            const collapse = document.getElementById('pesanRahasia');
-            if (collapse && collapse.classList.contains('show')) {
-                const bsCollapse = bootstrap.Collapse.getInstance(collapse);
-                if (bsCollapse) bsCollapse.hide();
-            }
-
-            /* Sembunyikan swipe hint setelah interaksi */
-            if (swipeHint) {
-                swipeHint.style.opacity = '0';
-                swipeHint.style.transition = 'opacity 0.4s';
-                setTimeout(() => swipeHint.style.display = 'none', 400);
-            }
-
-            setTimeout(() => {
-                isAnimating = false;
-            }, 900);
-        }
-
-        function nextPage() {
-            goToPage(currentPage + 1);
-        }
-
-        function prevPage() {
-            goToPage(currentPage - 1);
-        }
-
-        /* Keyboard */
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                e.preventDefault();
-                nextPage();
-            }
-            if (e.key === 'ArrowLeft') prevPage();
-        });
-
-        /* Swipe support untuk HP & tablet */
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let touchStartTime = 0;
-        const SWIPE_THRESHOLD = 50;
-        const SWIPE_TIME = 800;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-            touchStartTime = Date.now();
-        }, { passive: true });
-
-        document.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].screenX;
-            const touchEndY = e.changedTouches[0].screenY;
-            const diffX = touchStartX - touchEndX;
-            const diffY = touchStartY - touchEndY;
-            const elapsed = Date.now() - touchStartTime;
-
-            /* Hanya trigger jika swipe horizontal & cepat */
-            if (Math.abs(diffX) > Math.abs(diffY) &&
-                Math.abs(diffX) > SWIPE_THRESHOLD &&
-                elapsed < SWIPE_TIME) {
-                if (diffX > 0) nextPage();
-                else prevPage();
-            }
-        }, { passive: true });
-
-        /* Init */
-        updateUI();
-
-        /* Auto-hide swipe hint setelah 5 detik */
-        setTimeout(() => {
-            if (swipeHint && swipeHint.style.display !== 'none') {
-                swipeHint.style.opacity = '0';
-                swipeHint.style.transition = 'opacity 0.5s';
-                setTimeout(() => swipeHint.style.display = 'none', 500);
-            }
-        }, 5000);
-
-        /* Re-generate particles saat resize (kalau orientasi berubah) */
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                /* Update UI counter tetap stabil */
-                updateUI();
-            }, 250);
-        });
-    </script>
-
+    // Spawn heart upon screen tap/click
+    window.addEventListener('click', (e) => {
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.flame-element')) return;
+      const heart = document.createElement('div');
+      heart.className = 'click-heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      heart.style.fontSize = (Math.random() * 12 + 20) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1200);
+    });
+  </script>
 </body>
 
 </html>
