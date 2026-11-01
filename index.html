@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Selamat Ulang Tahun Nazira Wandiny Tersayang ❤️</title>
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts: Dancing Script, Playfair Display, & Plus Jakarta Sans -->
+  <title>Happy Anniversary, My Love Nazira ❤️</title>
+  <meta name="description" content="Surat cinta dan ucapan anniversary romantis untuk pacar tersayang.">
+
+  <!-- ========================================================
+       1. GOOGLE FONTS & BOOTSTRAP 5 CDN
+       ======================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-  <!-- Canvas Confetti Library -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5.3 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons & FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+  <!-- ========================================================
+       2. CSS KUSTOM (Tema Warna, Background, & Animasi Bergerak)
+       ======================================================== -->
   <style>
     :root {
-      --romantic-rose: #f43f5e;
-      --romantic-pink: #ec4899;
-      --romantic-bg: #0d0712;
-      --romantic-card: rgba(28, 14, 32, 0.75);
+      --soft-pink: #FFD1DC;
+      --soft-pink-light: #FFF0F3;
+      --deep-rose: #D81B60;
+      --crimson-dark: #AD1457;
+      --cream-bg: #FFFDF9;
+      --gold-accent: #D4AF37;
+      --gold-light: #F9E79F;
+      --text-dark: #37282B;
+      --text-muted: #6D4C41;
     }
 
     * {
@@ -30,652 +42,1260 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Background Romantis: Gradient Lembut + Partikel Bokeh / Kelopak Mawar */
     body {
-      background-color: var(--romantic-bg);
-      color: #ffe4e6;
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      background-color: #FFF5F7;
+      background-image: 
+        linear-gradient(180deg, rgba(255, 248, 250, 0.88) 0%, rgba(255, 240, 243, 0.90) 45%, rgba(255, 230, 236, 0.93) 100%),
+        url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1600&q=80');
+      background-attachment: fixed;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: var(--text-dark);
       overflow-x: hidden;
-      min-height: 100vh;
       position: relative;
+      min-height: 100vh;
     }
 
-    .font-romantic {
-      font-family: 'Dancing Script', cursive;
+    /* Tipografi Khusus */
+    .font-script {
+      font-family: 'Great Vibes', cursive;
     }
 
-    .font-serif-title {
-      font-family: 'Playfair Display', Georgia, serif;
+    .font-serif {
+      font-family: 'Playfair Display', serif;
     }
 
-    /* Ambient Glow Spots */
-    .ambient-glow-1 {
+    /* Canvas Partikel Hati Melayang di Background */
+    #hearts-canvas {
       position: fixed;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(40px);
-    }
-
-    .ambient-glow-2 {
-      position: fixed;
-      bottom: 5%;
-      right: 5%;
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(50px);
-    }
-
-    /* Floating Hearts Animation */
-    .heart-particle {
-      position: fixed;
-      bottom: -30px;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
       z-index: 1;
-      user-select: none;
-      animation: floatUp 11s linear infinite;
-      filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.5));
     }
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(0.6) rotate(0deg);
-        opacity: 0;
-      }
-
-      15% {
-        opacity: 0.85;
-      }
-
-      85% {
-        opacity: 0.85;
-      }
-
-      100% {
-        transform: translateY(-110vh) scale(1.15) rotate(25deg);
-        opacity: 0;
-      }
-    }
-
-    /* Click Spawned Heart */
-    .click-heart {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      user-select: none;
-      animation: popUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.8));
-    }
-
-    @keyframes popUp {
-      0% {
-        transform: translate(-50%, -50%) scale(0.4);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate(-50%, -120px) scale(1.2);
-        opacity: 0;
-      }
-    }
-
-    /* Glassmorphic Romantic Cards */
-    .glass-card {
-      background: var(--romantic-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(244, 63, 94, 0.28);
-      border-radius: 24px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    }
-
-    .btn-romantic {
-      background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
-      color: #ffffff;
-      border: none;
-      border-radius: 50rem;
-      padding: 12px 30px;
-      font-weight: 600;
-      font-size: 14px;
-      box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-    }
-
-    .btn-romantic:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 10px 28px rgba(244, 63, 94, 0.6);
-      color: #ffffff;
-    }
-
-    .btn-romantic:active {
-      transform: scale(0.97);
-    }
-
-    /* Candle Flame Animation */
-    @keyframes flameFlicker {
-
-      0%,
-      100% {
-        transform: scale(1) rotate(-1deg);
-        opacity: 0.95;
-      }
-
-      25% {
-        transform: scale(1.08, 0.92) rotate(1.5deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform: scale(0.94, 1.05) rotate(-0.5deg);
-        opacity: 0.85;
-      }
-
-      75% {
-        transform: scale(1.04, 0.98) rotate(1deg);
-        opacity: 1;
-      }
-    }
-
-    .flame-element {
-      width: 14px;
-      height: 22px;
-      background: radial-gradient(ellipse at bottom, #ffffff 0%, #fde047 35%, #fb923c 70%, #ea580c 100%);
-      border-radius: 50% 50% 35% 35%;
-      box-shadow: 0 0 16px rgba(251, 191, 36, 0.9);
-      animation: flameFlicker 1.8s ease-in-out infinite;
-      margin: 0 auto;
-      cursor: pointer;
-      transform-origin: bottom center;
-    }
-
-    /* Vintage Love Letter */
-    .parchment-letter {
-      background-color: #fffaf2;
-      color: #292524;
-      border: 4px solid #ebd5c1;
-      border-radius: 24px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    .content-layer {
       position: relative;
-      overflow: hidden;
+      z-index: 10;
     }
 
-    /* Floating Music Widget */
-    .music-widget {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 1050;
-      background: rgba(13, 7, 18, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(244, 63, 94, 0.35);
-      border-radius: 50rem;
-      padding: 7px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #fda4af;
-      font-size: 13px;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-      transition: all 0.25s ease;
-    }
-
-    .music-widget:hover {
-      background: rgba(13, 7, 18, 0.9);
-      border-color: rgba(244, 63, 94, 0.6);
-      color: #ffffff;
-      transform: scale(1.03);
-    }
-
-    .sound-bars span {
-      display: inline-block;
-      width: 3px;
-      height: 12px;
-      background-color: #f43f5e;
-      border-radius: 2px;
-      margin: 0 1px;
-      transition: height 0.2s;
-    }
-
-    .sound-bars.playing span:nth-child(1) {
-      animation: barBounce 0.8s ease-in-out infinite alternate;
-    }
-
-    .sound-bars.playing span:nth-child(2) {
-      animation: barBounce 0.6s ease-in-out infinite alternate 0.2s;
-    }
-
-    .sound-bars.playing span:nth-child(3) {
-      animation: barBounce 0.9s ease-in-out infinite alternate 0.4s;
-    }
-
-    @keyframes barBounce {
-      0% {
-        height: 4px;
-      }
-
-      100% {
-        height: 16px;
-      }
-    }
-
-    /* Intro Overlay with Romantic Envelope */
-    #introOverlay {
+    /* ========================================================
+       HALAMAN DEPAN (ENTRANCE SCREEN)
+       ======================================================== */
+    #entrance-screen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #230e25 0%, #0c050d 100%);
-      z-index: 9990;
+      z-index: 9999;
+      background: linear-gradient(135deg, #FFF0F3 0%, #FFE4E9 50%, #FFD1DC 100%);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s;
+    }
+
+    #entrance-screen.unlocked {
+      opacity: 0;
+      transform: scale(1.06);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Animasi Panah Meluncur di Halaman Depan */
+    @keyframes launchCupidArrow {
+      0% {
+        transform: translateX(-150px) scale(0.9);
+        opacity: 0.4;
+      }
+      30% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+      }
+      75% {
+        transform: translateX(180px) scale(1.2) rotate(-3deg);
+        opacity: 1;
+      }
+      95% {
+        transform: translateX(240px) scale(1.35);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateX(260px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes heartExplosion {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+        filter: drop-shadow(0 0 35px rgba(216, 27, 96, 0.9));
+      }
+      100% {
+        transform: scale(2.4);
+        opacity: 0;
+      }
+    }
+
+    .animate-launch-arrow {
+      animation: launchCupidArrow 1.2s cubic-bezier(0.2, 0.9, 0.3, 1) forwards !important;
+    }
+
+    .animate-heart-explode {
+      animation: heartExplosion 0.8s ease-out forwards !important;
+    }
+
+    @keyframes heartThrob {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(216, 27, 96, 0.4));
+      }
+      50% {
+        transform: scale(1.22);
+        filter: drop-shadow(0 0 25px rgba(216, 27, 96, 0.8));
+      }
+    }
+
+    .animate-heart-throb {
+      animation: heartThrob 1.8s ease-in-out infinite;
+      position: relative;
+    }
+
+    .cupid-target-heart {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--deep-rose), #E91E63);
+      border: 2px solid var(--gold-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 26px;
+      box-shadow: 0 8px 24px rgba(216, 27, 96, 0.4);
+    }
+
+    /* Glassmorphism Card Modern */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255, 209, 220, 0.8);
+      box-shadow: 0 16px 45px -10px rgba(216, 27, 96, 0.14), 0 0 1px 1px rgba(212, 175, 55, 0.25);
+      border-radius: 26px;
+    }
+
+    .glass-card-subtle {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 225, 235, 0.65);
+      border-radius: 20px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 85vh;
+      display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 24px;
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+      padding: 60px 20px 50px 20px;
+      position: relative;
     }
 
-    .envelope-box {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #f43f5e, #ec4899);
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      color: var(--deep-rose);
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.3vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 1.25rem auto 2.5rem auto;
+      font-weight: 300;
+    }
+
+    /* Tombol Glowing CTA */
+    .btn-glowing {
+      background: linear-gradient(135deg, var(--deep-rose) 0%, #E91E63 50%, var(--crimson-dark) 100%);
+      color: #ffffff !important;
+      padding: 14px 38px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-radius: 50px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 0 25px rgba(216, 27, 96, 0.45);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .btn-glowing:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 10px 35px rgba(216, 27, 96, 0.6), 0 0 45px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Relationship Counter Box */
+    .counter-box {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 209, 220, 0.8);
+      border-radius: 16px;
+      padding: 14px 20px;
+      min-width: 85px;
+      box-shadow: 0 6px 15px rgba(216, 27, 96, 0.05);
+    }
+
+    .counter-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--deep-rose);
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+    }
+
+    .counter-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Kenangan Tunggal (Single Prominent Memory Showcase) */
+    .memory-single-card {
+      border: 2px solid rgba(255, 209, 220, 0.85);
+      border-radius: 28px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 20px 50px -10px rgba(216, 27, 96, 0.18), 0 0 1px 1px rgba(212, 175, 55, 0.3);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .memory-single-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 55px -10px rgba(216, 27, 96, 0.25);
+    }
+
+    .memory-single-img-container {
+      position: relative;
+      overflow: hidden;
+      max-height: 620px;
+      min-height: 320px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px auto;
-      box-shadow: 0 0 35px rgba(244, 63, 94, 0.6);
-      font-size: 38px;
-      animation: pulseGlow 2.5s infinite;
+      background: linear-gradient(180deg, #FFF5F7 0%, #FFE8EE 100%);
+      padding: 10px;
     }
 
-    @keyframes pulseGlow {
+    .memory-single-img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 580px;
+      object-fit: contain;
+      border-radius: 16px;
+      transition: transform 0.5s ease;
+      position: relative;
+      z-index: 5;
+    }
 
-      0%,
-      100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.5));
-      }
+    .memory-single-card:hover .memory-single-img {
+      transform: scale(1.01);
+    }
 
-      50% {
-        transform: scale(1.06);
-        filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.8));
-      }
+    .memory-overlay-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      color: var(--deep-rose);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Cap Lilin Wax Seal */
+    .wax-seal {
+      width: 64px;
+      height: 64px;
+      background: radial-gradient(circle at 35% 35%, #E91E63, #880E4F);
+      border: 2px solid var(--gold-accent);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 26px;
+      box-shadow: 0 6px 20px rgba(136, 14, 79, 0.35);
+      margin-bottom: -32px;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Mini Floating Music Player */
+    .music-player-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1050;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(216, 27, 96, 0.3);
+      box-shadow: 0 10px 30px rgba(216, 27, 96, 0.18);
+      border-radius: 50px;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .music-btn {
+      width: 38px;
+      height: 38px;
+      background: var(--deep-rose);
+      color: #fff;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: transform 0.2s;
+    }
+
+    .equalizer-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 18px;
+    }
+
+    .equalizer-wave span {
+      width: 3px;
+      height: 6px;
+      background: var(--deep-rose);
+      border-radius: 3px;
+      transition: height 0.2s;
+    }
+
+    .equalizer-wave.active span:nth-child(1) { animation: soundBar 0.9s infinite alternate; }
+    .equalizer-wave.active span:nth-child(2) { animation: soundBar 1.2s infinite alternate 0.2s; }
+    .equalizer-wave.active span:nth-child(3) { animation: soundBar 0.7s infinite alternate 0.4s; }
+    .equalizer-wave.active span:nth-child(4) { animation: soundBar 1.1s infinite alternate 0.1s; }
+
+    @keyframes soundBar {
+      0% { height: 4px; }
+      100% { height: 18px; }
+    }
+
+    /* Modal Styling */
+    .modal-content.romantic-modal {
+      border: 2px solid rgba(255, 209, 220, 0.9);
+      border-radius: 26px;
+      background: linear-gradient(135deg, #FFFDF9 0%, #FFF5F7 100%);
+      box-shadow: 0 25px 60px rgba(216, 27, 96, 0.22);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 209, 220, 0.7);
+      background: rgba(255, 255, 255, 0.75);
+      padding: 35px 15px;
+      text-align: center;
+      margin-top: 80px;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Ambient Light Effects -->
-  <div class="ambient-glow-1"></div>
-  <div class="ambient-glow-2"></div>
+  <!-- ========================================================
+       CANVAS BACKGROUND PARTIKEL HATI MELAYANG
+       ======================================================== -->
+  <canvas id="hearts-canvas"></canvas>
 
-  <!-- INTRO SCREEN (Unlocks browser audio autoplay on first user touch) -->
-  <div id="introOverlay">
-    <div class="glass-card p-4 p-md-5 text-center" style="max-width: 460px; width: 100%;">
-      <div class="envelope-box">💌</div>
-      <p class="text-uppercase tracking-wider small mb-2" style="color: #fb7185; letter-spacing: 2px;">
-        17 OKTOBER · HARI SPESIALMU
-      </p>
-      <h2 class="font-serif-title text-white mb-2" style="font-size: 28px;">
-        Kejutan Manis untuk Nazira Wandiny
-      </h2>
-      <p class="small mb-4" style="color: #fda4af; line-height: 1.6;">
-        Sentuh tombol di bawah ini untuk membuka kado ucapan, melodi romantis, dan pesan yang ditulis khusus dari lubuk
-        hati terdalam.
-      </p>
-      <button class="btn btn-romantic w-100" onclick="startCelebration()">
-        Buka Kejutan Cinta ❤️
-      </button>
-      <div class="mt-3 small" style="color: rgba(253, 164, 175, 0.6); font-size: 11px;">
-        Dilengkapi musik otomatis & efek kembang api
+  <!-- ========================================================
+       HALAMAN DEPAN / ENTRANCE SCREEN (TEMBAKKAN PANAH CINTA)
+       Sebelum masuk ke kata-kata anniversary
+       ======================================================== -->
+  <div id="entrance-screen">
+    <div class="glass-card text-center p-4 p-md-5" style="max-width: 540px; width: 100%;">
+      
+      <div class="mb-3">
+        <span class="badge rounded-pill px-3 py-1 text-danger" style="background: var(--soft-pink); font-size: 0.8rem;">
+          <i class="bi bi-lock-fill me-1"></i> Surat Rahasia Menantimu
+        </span>
       </div>
-    </div>
-  </div>
 
-  <!-- FLOATING HEARTS CONTAINER -->
-  <div id="heartsContainer"></div>
+      <p class="font-script fs-2 mb-1" style="color: var(--deep-rose);">
+        Untuk Seseorang yang Paling Berharga...
+      </p>
 
-  <!-- FLOATING MUSIC PLAYER BAR -->
-  <div class="music-widget" onclick="toggleMusic()" title="Putar atau Jeda Musik Romantis">
-    <div id="soundBars" class="sound-bars">
-      <span></span><span></span><span></span>
-    </div>
-    <span id="musicStatus">Musik: Aktif 🎵</span>
-  </div>
-
-  <!-- MAIN CONTAINER -->
-  <div class="container py-5 position-relative" style="z-index: 2;">
-
-    <!-- HERO HEADER -->
-    <header class="text-center my-4 my-md-5">
-      <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3"
-        style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.3); font-size: 12px; color: #fb7185; letter-spacing: 1px;">
-        <span>📅 17 Oktober</span>
-        <span>·</span>
-        <span>Hari Lahir Bidadariku Nazira</span>
-      </div>
-      <h1 class="display-3 font-serif-title text-white fw-bold">
-        Selamat Ulang Tahun, <br class="d-md-none">
-        <span class="font-romantic" style="color: #fb7185; font-size: 1.25em;">Nazira Wandiny</span> ❤️
+      <h1 class="font-serif fw-bold mb-3" style="color: var(--deep-rose); font-size: 1.8rem;">
+        Ada Pesan Cinta Spesial Untukmu 💌
       </h1>
-      <p class="font-romantic display-6 mt-3" style="color: rgba(255, 228, 230, 0.85); font-size: 28px;">
-        "Semoga setiap langkah dan harimu selalu dipenuhi bahagia dan cinta."
+
+      <p class="text-muted small mb-4" style="line-height: 1.6;">
+        Tarik busur dan tembakkan panah asmara ke dalam hati untuk membuka halaman kata-kata anniversary kita.
       </p>
+
+      <!-- Target Hati & Panah Bergerak -->
+      <div class="glass-card-subtle p-3 my-4 d-flex align-items-center justify-content-center overflow-hidden position-relative" style="height: 120px; background: rgba(255,255,255,0.7);">
+        
+        <div id="entrance-arrow" class="d-flex align-items-center" style="transition: transform 0.6s;">
+          <span style="font-size: 2.2rem;">🏹</span>
+          <div style="height: 3px; width: 80px; background: linear-gradient(to right, #D4AF37, #D81B60); margin: 0 4px; border-radius: 4px;"></div>
+          <span style="font-size: 1.5rem; color: var(--deep-rose);">💘</span>
+        </div>
+
+        <div id="entrance-heart" class="animate-heart-throb ms-4">
+          <div class="cupid-target-heart">
+            <i class="bi bi-heart-fill"></i>
+          </div>
+          <span style="position: absolute; top: -6px; right: -6px; font-size: 13px;">✨</span>
+        </div>
+
+      </div>
+
+      <!-- Tombol Tembakkan Panah Halaman Awal -->
+      <div class="mt-4">
+        <button id="btn-shoot-enter" class="btn-glowing w-100 py-3" onclick="launchArrowToEnter()">
+          <span style="font-size: 1.3rem;">🏹</span>
+          <span>Tembakkan Panah Cinta 💘</span>
+          <i class="bi bi-stars text-warning"></i>
+        </button>
+      </div>
+
+      <small class="text-muted d-block mt-3" style="font-size: 0.75rem;">
+        Musik piano romantis akan otomatis berputar saat surat terbuka 🎵
+      </small>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================================
+       HALAMAN UTAMA KATA-KATA UCAPAN ANNIVERSARY
+       ======================================================== -->
+  <div class="content-layer">
+
+    <!-- Responsive Bootstrap 5 Romantic Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--soft-pink); box-shadow: 0 4px 20px rgba(216, 27, 96, 0.08);">
+      <div class="container">
+        <!-- Brand Wordmark -->
+        <a class="navbar-brand font-serif fw-bold d-flex align-items-center gap-2" href="#" style="color: var(--deep-rose);">
+          <div class="rounded-circle d-flex align-items-center justify-center p-1" style="background: #FFF0F3; border: 1px solid var(--soft-pink); width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;">
+            <i class="bi bi-heart-fill text-danger" style="font-size: 0.95rem;"></i>
+          </div>
+          <span style="font-size: 1.15rem;">Our Love Story</span>
+          <span class="badge rounded-pill ms-1 d-none d-sm-inline" style="background: #FFF0F3; color: var(--deep-rose); border: 1px solid var(--soft-pink); font-size: 0.7rem;" id="nav-partner-badge">Nazira Wandiny</span>
+        </a>
+
+        <!-- Mobile Action Buttons & Hamburger Toggler -->
+        <div class="d-flex align-items-center gap-1.5 d-lg-none">
+          <button class="btn btn-sm btn-outline-danger rounded-circle" onclick="toggleAudio()" title="Musik Romantis" style="width: 34px; height: 34px; padding: 0;">
+            <i class="bi bi-music-note-beamed" id="nav-mobile-music-icon"></i>
+          </button>
+          <button class="btn btn-sm btn-danger rounded-circle text-white" data-bs-toggle="modal" data-bs-target="#customizeModal" title="Edit Pesan" style="width: 34px; height: 34px; padding: 0;">
+            <i class="bi bi-pencil-fill" style="font-size: 0.75rem;"></i>
+          </button>
+          <button class="navbar-toggler border-0 p-1 ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#romanticNavbar" aria-controls="romanticNavbar" aria-expanded="false" aria-label="Toggle navigation" style="box-shadow: none;">
+            <i class="bi bi-list fs-3" style="color: var(--deep-rose);"></i>
+          </button>
+        </div>
+
+        <!-- Collapsible Content -->
+        <div class="collapse navbar-collapse mt-2 mt-lg-0" id="romanticNavbar">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-1 text-center">
+            <li class="nav-item">
+              <a class="nav-link fw-medium px-3 rounded-pill text-dark" href="#kisah-kita">📸 Kenangan Kita</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-medium px-3 rounded-pill text-dark" href="#surat-cinta">💌 Surat Cinta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-medium px-3 rounded-pill text-dark" href="#alasan-cinta">✨ Alasan Cinta</a>
+            </li>
+          </ul>
+
+          <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 pt-2 pt-lg-0 border-top border-lg-0 border-pink-subtle">
+            <button class="btn btn-sm rounded-pill px-3" style="background: #FFF0F3; color: var(--deep-rose); border: 1px solid var(--soft-pink);" data-bs-toggle="modal" data-bs-target="#photoEditModal">
+              <i class="bi bi-camera me-1"></i> Ganti Foto
+            </button>
+            <button class="btn btn-sm btn-danger rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#customizeModal">
+              <i class="bi bi-pencil-square me-1"></i> Edit Pesan
+            </button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="relockEntrance()" title="Kembali ke animasi halaman awal">
+              🏹 Halaman Depan
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================================
+         HERO SECTION (Judul Besar Anniversary & Waktu Bersama)
+         ======================================================== -->
+    <header class="hero-section">
+      <div class="container">
+        
+        <!-- Kaligrafi Manis -->
+        <p class="font-script fs-1 text-rose-accent mb-1" style="color: var(--deep-rose);">
+          To the one who holds my heart...
+        </p>
+
+        <!-- Judul Besar Anniversary (Kustomisasi teks di bawah ini) -->
+        <h1 class="hero-title font-serif fw-bold">
+          Happy Anniversary, My Love Nazira ❤️
+        </h1>
+
+        <!-- Sub-judul Manis (Kustomisasi pesan pendek di bawah ini) -->
+        <p class="hero-subtitle">
+          "Terima kasih telah menemani setiap langkah, melukis tawa di setiap hariku, dan mencintaiku."
+        </p>
+
+        <!-- Tombol CTA Bercahaya (Glowing Effect) -->
+        <div class="mb-5">
+          <a href="#kisah-kita" class="btn-glowing">
+            <span>Buka Surat Cinta</span>
+            <span>💌</span>
+          </a>
+        </div>
+
+        <!-- Petunjuk Scroll ke Bawah -->
+        <div class="mt-4 text-center">
+          <a href="#kisah-kita" class="text-decoration-none" style="color: var(--deep-rose);">
+            <div class="small fw-semibold mb-1">Lihat Kenangan Kita <i class="bi bi-heart-fill text-danger"></i></div>
+            <i class="bi bi-chevron-down fs-4"></i>
+          </a>
+        </div>
+
+      </div>
     </header>
 
-    <!-- ROW: VIRTUAL CAKE & SURAT CINTA -->
-    <div class="row g-4 justify-content-center align-items-stretch mb-5">
 
-      <!-- VIRTUAL BIRTHDAY CAKE -->
-      <div class="col-lg-6">
-        <div class="glass-card p-4 p-md-5 text-center h-100 d-flex flex-column justify-content-between">
-          <div>
-            <span class="badge rounded-pill mb-2 px-3 py-1.5"
-              style="background: rgba(244, 63, 94, 0.3); border: 1px solid rgba(244, 63, 94, 0.4); color: #ffe4e6;">
-              Tiup Lilin & Sampaikan Doa ✨
-            </span>
-            <h3 class="font-serif-title text-white mb-1">Make a Wish, Nazira!</h3>
-            <p class="small text-white-50 mb-4">
-              Pejamkan matamu sejenak, ucapkan doa terbaik di hatimu, lalu klik tombol untuk meniup lilinnya ya.
-            </p>
+    <!-- ========================================================
+         SECTION 1: KENANGAN KITA (SATU FOTO ROMANTIS UTAMA)
+         ======================================================== -->
+    <section id="kisah-kita" class="py-5">
+      <div class="container" style="max-width: 900px;">
+        
+        <div class="text-center mb-5">
+          <span class="text-uppercase fw-semibold" style="letter-spacing: 2px; color: var(--gold-accent); font-size: 0.85rem;">
+            Jejak Langkah Kita
+          </span>
+          <h2 class="font-serif fw-bold mt-1" style="color: var(--deep-rose);">
+            ✧ Satu Foto, Sejuta Kenangan Indah ✧
+          </h2>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin: 1.25rem 0;">
+            <span style="height: 1px; width: 50px; background: var(--gold-accent);"></span>
+            <i class="bi bi-heart-fill text-danger"></i>
+            <span style="height: 1px; width: 50px; background: var(--gold-accent);"></span>
           </div>
+          <p class="text-muted mx-auto" style="max-width: 620px;">
+            Di antara ribuan detik yang telah kita lewati bersama, foto ini yang menjadi salahsatu yang merangkum kehangatan, cinta, dan ketenangan yang kurasakan di sisimu.
+          </p>
+        </div>
 
-          <!-- Cake Graphic -->
-          <div class="py-3 select-none">
-            <!-- Candles -->
-            <div class="d-flex justify-content-center gap-4 mb-2">
-              <div onclick="blowCandles()" style="cursor: pointer;" title="Klik untuk tiup lilin">
-                <div id="flame1" class="flame-element"></div>
-                <div style="width: 2px; height: 6px; background: #333; margin: 0 auto;"></div>
-                <div
-                  style="width: 12px; height: 42px; background: linear-gradient(#fbcfe8, #f43f5e); border-radius: 2px; margin: 0 auto; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
-                </div>
-              </div>
-              <div onclick="blowCandles()" style="cursor: pointer;" title="Klik untuk tiup lilin">
-                <div id="flame2" class="flame-element"></div>
-                <div style="width: 2px; height: 6px; background: #333; margin: 0 auto;"></div>
-                <div
-                  style="width: 12px; height: 48px; background: linear-gradient(#fbcfe8, #f43f5e); border-radius: 2px; margin: 0 auto; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
-                </div>
-              </div>
-              <div onclick="blowCandles()" style="cursor: pointer;" title="Klik untuk tiup lilin">
-                <div id="flame3" class="flame-element"></div>
-                <div style="width: 2px; height: 6px; background: #333; margin: 0 auto;"></div>
-                <div
-                  style="width: 12px; height: 42px; background: linear-gradient(#fbcfe8, #f43f5e); border-radius: 2px; margin: 0 auto; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
-                </div>
-              </div>
+        <!-- Kartu Kenangan Tunggal (Single Prominent Memory Card) -->
+        <div class="memory-single-card position-relative">
+          <div class="memory-single-img-container position-relative">
+            <!-- [KUSTOMISASI]: Ganti URL foto kenangan terbaik Anda di sini atau gunakan tombol Ganti Foto -->
+            <img 
+              id="main-memory-img"
+              src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80" 
+              alt="Kenangan Romantis Kita" 
+              class="memory-single-img"
+            >
+            <div class="memory-overlay-badge">
+              <i class="bi bi-heart-fill"></i>
+              <span id="badge-memory-text">Momen Indah Kita</span>
             </div>
 
-            <!-- Top Cake Tier -->
-            <div
-              style="width: 170px; height: 55px; background: #ffe4e6; border-radius: 16px 16px 0 0; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.25); position: relative; border-bottom: 4px solid #fda4af;">
-              <span class="text-dark small fw-bold font-romantic"
-                style="font-size: 20px; line-height: 55px;">19tahun</span>
-            </div>
-            <!-- Bottom Cake Tier -->
-            <div
-              style="width: 235px; height: 75px; background: #fda4af; border-radius: 20px 20px 0 0; margin: 0 auto; box-shadow: 0 6px 16px rgba(0,0,0,0.3); position: relative;">
-              <span class="font-romantic text-dark fw-bold" style="font-size: 26px; line-height: 75px;">Happy Birthday
-                Nazira</span>
-            </div>
-            <!-- Cake Plate -->
-            <div
-              style="width: 275px; height: 12px; background: #ffffff; border-radius: 50rem; margin: 0 auto; box-shadow: 0 6px 18px rgba(0,0,0,0.4);">
-            </div>
-          </div>
-
-          <div class="mt-4">
-            <button id="blowBtn" class="btn btn-romantic" onclick="blowCandles()">
-              Tiup Lilin Sekarang 🎂
+            <!-- Tombol Cepat Ganti Foto di Atas Foto -->
+            <button 
+              class="btn btn-sm btn-light rounded-pill position-absolute top-0 end-0 m-3 shadow px-3 py-1.5 fw-semibold text-danger d-flex align-items-center gap-1.5"
+              data-bs-toggle="modal" 
+              data-bs-target="#photoEditModal"
+              style="z-index: 10;"
+            >
+              <i class="bi bi-camera-fill"></i> Ganti Foto Ini
             </button>
-            <p id="wishAlert" class="mt-3 text-warning small d-none font-romantic" style="font-size: 22px;">
-              ✨ Doamu telah terbang ke langit! Semoga bahagia selalu bersamaku, Nazira tersayang! ✨
+          </div>
+
+          <div class="p-4 p-md-5 text-center">
+            <!-- [KUSTOMISASI]: Ganti cerita/keterangan kenangan di bawah ini -->
+            <h3 id="main-memory-title" class="font-serif fw-bold" style="color: var(--deep-rose);">
+              "Dalam Pelukanmu, Aku Menemukan Rumah"
+            </h3>
+            <p id="main-memory-caption" class="text-muted mt-3 mx-auto" style="font-size: 1.05rem; line-height: 1.8; max-width: 680px; font-style: italic;">
+              "Di antara ribuan momen yang kita lewati, saat-saat bersamamu seperti ini adalah bukti bahwa kebahagiaan sejati itu nyata dan sederhana. Pelukan hangatmu selalu menjadi tempat terbaik bagiku untuk beristirahat dari riuhnya dunia."
             </p>
+            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mt-4 text-muted small">
+              <i class="bi bi-geo-alt-fill text-danger"></i>
+              <span id="main-memory-loc">Danau Senja • Hari Yang Tak Terlupakan • Selamanya Bersamamu</span>
+              <span class="mx-2">•</span>
+              <button 
+                class="btn btn-link text-danger p-0 text-decoration-none small fw-semibold"
+                data-bs-toggle="modal" 
+                data-bs-target="#photoEditModal"
+              >
+                <i class="bi bi-pencil-square"></i> Edit Kisah Foto
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 2: SURAT CINTA & KATA-KATA UCAPAN (Glassmorphism)
+         ======================================================== -->
+    <section id="surat-cinta" class="py-5">
+      <div class="container">
+        
+        <div class="text-center mb-4">
+          <div class="wax-seal">
+            <i class="bi bi-heart-fill"></i>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9 col-xl-8">
+
+            <!-- Card Berpola Glassy / Glassmorphism -->
+            <div class="glass-card p-4 p-md-5 position-relative">
+              
+              <div class="text-center mb-4">
+                <span class="font-script fs-2" style="color: var(--gold-accent);">Surat Dari Lubuk Hatiku</span>
+                <!-- [KUSTOMISASI]: Ganti nama pacar di sini -->
+                <h3 class="font-serif fw-bold mt-1" style="color: var(--deep-rose);">Untuk Sayangku Tersayang</h3>
+                <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
+                  <span style="height: 1px; width: 40px; background: var(--gold-accent);"></span>
+                  <i class="bi bi-stars" style="color: var(--gold-accent);"></i>
+                  <span style="height: 1px; width: 40px; background: var(--gold-accent);"></span>
+                </div>
+              </div>
+
+              <!-- ========================================================
+                   BAGIAN EDIT KATA-KATA UCAPAN (Ubah teks di bawah ini)
+                   ======================================================== -->
+              <div class="letter-body text-start mt-4" style="line-height: 1.9; font-size: 1.05rem; color: #443135;">
+                
+                <p>
+                  <strong>Sayangku,</strong>
+                </p>
+
+                <p>
+                 Untuk Sayangku Nazira Wandiny,
+
+                  Selamat hari jadi hubungan kita! Hari ini adalah pengingat betapa beruntungnya aku memiliki seseorang sepertimu dalam hidupku. Rasanya waktu berjalan begitu cepat ketika dihabiskan bersama orang yang tepat.
+
+                  Terima kasih sudah selalu ada, baik di hari-hari yang penuh tawa maupun saat langkahku terasa berat. Kehadiranmu bukan sekadar menemani, tetapi memberi arti dan kehangatan pada setiap hal kecil yang kita lalui bersama.
+
+                  Aku bersyukur bisa mengenali mu bisa deket jaliln hubungan sama kamu menjalani hari sama kamu dan atas setiap pelukanmu yang menenangkan, tatapan matamu yang selalu meyakinkan, dan caramu memperlakukanku dengan penuh kelembutan. Kamu adalah rumah tempat hatiku selalu ingin pulang.
+                  Maafin aku kalo selama ini aku banyak salah sama kamu aku sering bikin kamu kesel badmood bikin kamu sedih maafin aku ya aku kemarin bikin fikiran kamu berat nambah nambah beban fikiran kamu maafin aku bikin kamu sedih kesel 
+
+                  Semoga cinta kita semakin dewasa, saling menguatkan saat badai datang, dan terus tumbuh dipenuhi kebahagiaan. Aku mencintaimu lebih dari kata-kata yang sanggup kuukir di halaman ini.
+                  Aku sayang sama kamu 
+
+                  Dengan seluruh cintaku,
+                  Aku yang Selalu Mencintaimu ❤️
+                </p>
+
+                <!-- Penutup Surat -->
+                <div class="text-end mt-5">
+                  <p class="mb-0 text-muted small">Dengan seluruh cintaku,</p>
+                  <!-- [KUSTOMISASI]: Ganti nama Anda di sini -->
+                  <p class="font-script fs-2 mb-0" style="color: var(--deep-rose);">
+                    Aku yang selalu mencintaimu ❤️
+                  </p>
+                </div>
+
+              </div>
+              <!-- ========================================================
+                   AKHIR BAGIAN EDIT KATA-KATA UCAPAN
+                   ======================================================== -->
+
+              <!-- Interactive Floating Love Reactions -->
+              <div class="text-center mt-5 pt-3 border-top" style="border-color: rgba(255, 209, 220, 0.6) !important;">
+                <button id="btn-heart-burst" class="btn btn-outline-danger rounded-pill px-4 py-2" onclick="spawnHeartBurst(event)">
+                  <i class="bi bi-heart-fill text-danger me-1"></i> Kirim Cinta Untukmu (<span id="love-counter">100</span> ❤️)
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 3: INTERACTIVE / SURPRISE BOX
+         ======================================================== -->
+    <section id="alasan-cinta" class="py-5">
+      <div class="container text-center">
+        
+        <div class="mb-4">
+          <span class="text-uppercase fw-semibold" style="letter-spacing: 2px; color: var(--gold-accent); font-size: 0.85rem;">
+            Kotak Kejutan Cinta
+          </span>
+          <h2 class="font-serif fw-bold mt-1" style="color: var(--deep-rose);">
+            ✧ Mengapa Aku Begitu Mencintaimu? ✧
+          </h2>
+          <p class="text-muted mx-auto" style="max-width: 520px;">
+            Ada sejuta alasan di dunia ini, tetapi inilah sebagian kecil yang selalu membuat hatiku berdebar setiap hari.
+          </p>
+        </div>
+
+        <div>
+          <button class="btn-glowing my-3" data-bs-toggle="modal" data-bs-target="#surpriseModal" onclick="showRandomReason()">
+            <i class="bi bi-gift-fill me-2"></i> Klik untuk Alasan Aku Mencintaimu ✨
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         MODAL POP-UP INTERAKTIF (Surprise Box Modal)
+         ======================================================== -->
+    <div class="modal fade" id="surpriseModal" tabindex="-1" aria-labelledby="surpriseModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content romantic-modal p-3 p-md-4">
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title font-serif fw-bold" id="surpriseModalLabel" style="color: var(--deep-rose);">
+              <i class="bi bi-heart-fill me-2"></i> Sebuah Alasan Kecil...
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body text-center py-4">
+            
+            <div class="mb-3">
+              <span id="reason-badge" class="badge rounded-pill px-3 py-1" style="background: var(--soft-pink); color: var(--deep-rose);">
+                Alasan #1
+              </span>
+            </div>
+
+            <!-- Teks Alasan Cinta Yang Berganti -->
+            <div class="glass-card-subtle p-4 my-2">
+              <p id="reason-text" class="fs-5 fst-italic mb-0" style="color: var(--text-dark); line-height: 1.7;">
+                "Caramu tersenyum saat menatapku selalu berhasil menenangkan hari-hariku yang paling melelahkan."
+              </p>
+            </div>
+
+            <div class="d-flex justify-content-center gap-2 mt-4">
+              <button class="btn btn-outline-danger rounded-pill px-4" onclick="showNextReason()">
+                <i class="bi bi-arrow-repeat me-1"></i> Alasan Lainnya ✨
+              </button>
+            </div>
+
+          </div>
+
+          <div class="modal-footer border-0 justify-content-center pt-0">
+            <small class="text-muted font-script fs-4" style="color: var(--deep-rose) !important;">
+              Forever and always with you...
+            </small>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- VINTAGE PARCHMENT LOVE LETTER -->
-      <div class="col-lg-6">
-        <div class="parchment-letter p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
-          <div>
-            <div
-              class="border-bottom border-secondary-subtle pb-3 mb-3 d-flex justify-content-between align-items-center">
+
+    <!-- ========================================================
+         MODAL EDIT & GANTI FOTO KENANGAN (Upload, URL, & Presets)
+         ======================================================== -->
+    <div class="modal fade" id="photoEditModal" tabindex="-1" aria-labelledby="photoEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content romantic-modal p-3 p-md-4">
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title font-serif fw-bold" id="photoEditModalLabel" style="color: var(--deep-rose);">
+              <i class="bi bi-camera-fill me-2"></i> Ganti Foto Kenangan Romantis
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body py-3">
+            <p class="text-muted small mb-3">
+              Unggah foto Anda sendiri dari galeri HP/laptop, tempel URL foto, atau ubah judul dan cerita kenangannya.
+            </p>
+
+            <!-- Opsi 1: Upload File -->
+            <div class="p-3 bg-white rounded-3 border mb-3">
+              <label class="form-label fw-bold text-danger small mb-1">
+                <i class="bi bi-upload me-1"></i> 1. Unggah Foto Dari Galeri (HP / Laptop):
+              </label>
+              <input type="file" id="local-photo-file" class="form-control form-control-sm" accept="image/*" onchange="previewLocalPhoto(event)">
+              <small class="text-muted d-block mt-1" style="font-size: 0.75rem;">
+                Foto akan otomatis tersimpan di browser Anda.
+              </small>
+            </div>
+
+            <!-- Opsi 2: Masukkan URL Foto -->
+            <div class="p-3 bg-white rounded-3 border mb-3">
+              <label class="form-label fw-bold text-danger small mb-1">
+                <i class="bi bi-link-45deg me-1"></i> 2. Atau Tempel Tautan / URL Foto:
+              </label>
+              <div class="input-group input-group-sm">
+                <input type="url" id="input-photo-url" class="form-control" placeholder="https://contoh-link-foto.com/foto-kita.jpg">
+                <button class="btn btn-outline-danger" type="button" onclick="applyPhotoFromUrl()">Terapkan URL</button>
+              </div>
+            </div>
+
+            <!-- Opsi 3: Edit Keterangan & Judul -->
+            <div class="p-3 bg-white rounded-3 border mb-3">
+              <label class="form-label fw-bold text-danger small mb-1">
+                <i class="bi bi-pencil-square me-1"></i> 3. Edit Keterangan & Cerita Kenangan:
+              </label>
+              
+              <div class="mb-2">
+                <small class="text-muted d-block">Judul Momen:</small>
+                <input type="text" id="input-edit-title" class="form-control form-control-sm" value="Dalam Pelukanmu, Aku Menemukan Rumah">
+              </div>
+
+              <div class="mb-2">
+                <small class="text-muted d-block">Lokasi / Keterangan Waktu:</small>
+                <input type="text" id="input-edit-loc" class="form-control form-control-sm" value="Danau Senja • Hari Yang Tak Terlupakan • Selamanya Bersamamu">
+              </div>
+
               <div>
-                <small class="text-uppercase text-muted fw-bold" style="font-size: 11px; letter-spacing: 1px;">Surat
-                  Tulus Dari Hati</small>
-                <h3 class="font-romantic text-danger mb-0" style="font-size: 34px;">Untuk Bidadariku, Nazira Wandiny
-                </h3>
-              </div>
-              <div class="text-end text-muted small" style="font-size: 12px;">
-                17 Oktober ❤️
+                <small class="text-muted d-block">Cerita / Kutipan:</small>
+                <textarea id="input-edit-caption" rows="2" class="form-control form-control-sm">Di antara ribuan momen yang kita lewati, saat-saat bersamamu seperti ini adalah bukti bahwa kebahagiaan sejati itu nyata dan sederhana. Pelukan hangatmu selalu menjadi tempat terbaik bagiku untuk beristirahat dari riuhnya dunia.</textarea>
               </div>
             </div>
 
-            <div
-              style="font-family: 'Playfair Display', Georgia, serif; font-size: 14.5px; line-height: 1.85; text-align: justify; color: #332a26;">
-              Selamat ulang tahun untuk bidadari terindah ku Nazira Wandiny ❤️<br><br>
-              selamat bertambah usia yaa cintakuuu. semoga di umur kamu yang sekarang, semua hal baik selalu datang ke
-              hidup kamu. semoga kamu selalu sehat, panjang umur, dilancarkan semua urusannya, dimudahkan rezekinya, dan
-              apa pun yang sedang kamu usahakan bisa tercapai satu per satu.
-              aku mungkin belum bisa jadi pacar yang sempurna, belum bisa selalu ngasih apa yang kamu mau, dan terkadang
-              masih banyak kurangnya. tapi aku mau kamu tahu kalau aku selalu bersyukur bisa kenal kamu dan punya kamu
-              di hidup aku. makasih yaa sayang, udah hadir dan jadi salah satu alasan aku buat bahagia. makasih juga
-              udah bertahan sejauh ini sama aku, dengan segala kurang dan lebihnya aku.
-
-              semoga di umur yang baru ini kamu makin dewasa, makin kuat, makin bahagia, dan selalu dikelilingi
-              orang-orang yang tulus sayang sama kamu. aku juga berharap hubungan kita bisa terus bertahan, bisa
-              sama-sama belajar jadi lebih baik, saling ngerti, saling jaga, dan saling milih satu sama lain meskipun
-              nantinya ada banyak hal yang harus kita lewatin.
-
-              sekali lagi, happy birthday yaa sayangkuuu, perempuan kesayangan aku ❤️ semoga semua doa baik yang kamu
-              simpan dalam hati bisa Allah kabulkan di waktu yang paling tepat. jangan lupa bahagia yaa, karena senyum
-              kamu itu berharga banget buat aku. aku sayang kamu, lebih dari yang kadang bisa aku ungkapin lewat
-              kata-kata. semoga aku masih bisa nemenin kamu di ulang tahun-ulang tahun berikutnya, dan semoga kita punya
-              lebih banyak cerita indah buat dikenang bareng-bareng.
-            </div>
           </div>
 
-          <div class="border-top border-secondary-subtle pt-3 mt-4 text-end">
-            <small class="text-muted fst-italic">Dengan segenap cinta dan ketulusan,</small>
-            <div class="font-romantic text-danger" style="font-size: 30px;">A Ahmad,Kekasihmu yang Selalu Mencintaimu
-            </div>
+          <div class="modal-footer border-0 justify-content-between pt-0">
+            <button type="button" class="btn btn-sm btn-link text-muted text-decoration-none" onclick="resetDefaultPhoto()">
+              <i class="bi bi-arrow-counterclockwise"></i> Reset Foto Bawaan
+            </button>
+            <button type="button" class="btn btn-danger btn-sm rounded-pill px-4" data-bs-dismiss="modal" onclick="saveMemoryDetails()">
+              Simpan & Terapkan
+            </button>
           </div>
         </div>
       </div>
-
     </div>
-
-    <!-- 3 ALASAN CINTA -->
-    <div class="text-center my-5">
-      <span class="badge rounded-pill px-3 py-1.5 mb-2"
-        style="background: rgba(244, 63, 94, 0.25); border: 1px solid rgba(244, 63, 94, 0.4); color: #fb7185;">
-        Dari Lubuk Hatiku
-      </span>
-      <h2 class="font-serif-title text-white">Kenapa Aku Begitu Mencintaimu, Nazira?</h2>
-    </div>
-
-    <div class="row g-4 mb-5">
-      <div class="col-md-4">
-        <div class="glass-card p-4 h-100">
-          <div class="display-6 mb-2" style="color: #fb7185;">01</div>
-          <h5 class="text-white font-serif-title">Senyumanmu yang Menenangkan</h5>
-          <p class="small text-white-50">Tak peduli seberat apa hariku, melihat senyum manismu selalu berhasil membuat
-            seluruh lelah dan bebanku sirna seketika.</p>
+    <div class="music-player-widget" id="music-widget" title="Klik untuk Putar/Jeda Musik Romantis">
+      <button class="music-btn" id="music-toggle-btn" aria-label="Toggle Musik">
+        <i class="bi bi-music-note-beamed" id="music-icon"></i>
+      </button>
+      <div class="text-start">
+        <div class="fw-semibold text-truncate" style="font-size: 0.85rem; color: var(--deep-rose); max-width: 130px;">
+          Romantic Piano
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="glass-card p-4 h-100">
-          <div class="display-6 mb-2" style="color: #fb7185;">02</div>
-          <h5 class="text-white font-serif-title">Ketulusan Hatimu</h5>
-          <p class="small text-white-50">Caramu memperlakukan aku dengan lembut, sabar, dan penuh kasih membuatku selalu
-            bersyukur semesta mempertemukan kita.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="glass-card p-4 h-100">
-          <div class="display-6 mb-2" style="color: #fb7185;">03</div>
-          <h5 class="text-white font-serif-title">Rumah Tempat Hatiku Pulang</h5>
-          <p class="small text-white-50">Bersamamu, aku merasa utuh, tenang, dan bisa menjadi diriku sendiri tanpa ada
-            rasa takut ataupun keraguan.</p>
+        <div class="equalizer-wave" id="music-equalizer">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="text-center py-4 border-top border-secondary text-white-50 small mt-5">
-      Dibuat dengan cinta tulus dan abadi untuk Nazira Wandiny ❤️ Selamat Ulang Tahun!
+
+    <!-- ========================================================
+         FOOTER
+         ======================================================== -->
+    <footer>
+      <div class="container">
+        <p class="font-script fs-3 mb-1" style="color: var(--deep-rose);">
+          Made with ❤️ for you, forever & always.
+        </p>
+        <p class="text-muted small mb-0">
+          Happy Anniversary • Every moment with you is my favorite memory
+        </p>
+      </div>
     </footer>
 
   </div>
 
-  <!-- BOOTSTRAP 5 BUNDLE JS -->
+  <!-- ========================================================
+       3. JAVASCRIPT KUSTOM (Animasi Panah, Musik, Interaksi)
+       ======================================================== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- WEB AUDIO API BACKGROUND MUSIC SYNTHESIZER -->
   <script>
-    let audioCtx = null;
-    let isPlaying = false;
-    let timeoutId = null;
-    let noteIndex = 0;
+    /* ==========================================
+       A. TEMBAKKAN PANAH DI HALAMAN DEPAN
+       ========================================== */
+    let isLaunching = false;
+    function launchArrowToEnter() {
+      if (isLaunching) return;
+      isLaunching = true;
 
-    const noteFreqs = {
-      C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00, B4: 493.88,
-      C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99
-    };
+      const btn = document.getElementById('btn-shoot-enter');
+      const arrow = document.getElementById('entrance-arrow');
+      const heart = document.getElementById('entrance-heart');
+      const screen = document.getElementById('entrance-screen');
 
-    // Happy Birthday romantic acoustic score
-    const melody = [
-      { note: 'G4', dur: 0.4 }, { note: 'G4', dur: 0.3 }, { note: 'A4', dur: 0.7 }, { note: 'G4', dur: 0.7 }, { note: 'C5', dur: 0.7 }, { note: 'B4', dur: 1.4 },
-      { note: 'G4', dur: 0.4 }, { note: 'G4', dur: 0.3 }, { note: 'A4', dur: 0.7 }, { note: 'G4', dur: 0.7 }, { note: 'D5', dur: 0.7 }, { note: 'C5', dur: 1.4 },
-      { note: 'G4', dur: 0.4 }, { note: 'G4', dur: 0.3 }, { note: 'G5', dur: 0.7 }, { note: 'E5', dur: 0.7 }, { note: 'C5', dur: 0.7 }, { note: 'B4', dur: 0.7 }, { note: 'A4', dur: 1.2 },
-      { note: 'F5', dur: 0.4 }, { note: 'F5', dur: 0.3 }, { note: 'E5', dur: 0.7 }, { note: 'C5', dur: 0.7 }, { note: 'D5', dur: 0.7 }, { note: 'C5', dur: 2.2 }
+      btn.innerHTML = '<span>Membuka Surat Cinta...</span> <i class="bi bi-hourglass-split"></i>';
+      arrow.classList.add('animate-launch-arrow');
+
+      // Putar musik romantis
+      toggleMusic();
+
+      // Hati meletup
+      setTimeout(() => {
+        heart.classList.remove('animate-heart-throb');
+        heart.classList.add('animate-heart-explode');
+        // Letupan partikel hati
+        spawnHeartBurst({ clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 });
+      }, 850);
+
+      // Buka halaman utama
+      setTimeout(() => {
+        screen.classList.add('unlocked');
+      }, 1500);
+    }
+
+    function relockEntrance() {
+      isLaunching = false;
+      const screen = document.getElementById('entrance-screen');
+      const arrow = document.getElementById('entrance-arrow');
+      const heart = document.getElementById('entrance-heart');
+      const btn = document.getElementById('btn-shoot-enter');
+
+      screen.classList.remove('unlocked');
+      arrow.classList.remove('animate-launch-arrow');
+      heart.classList.remove('animate-heart-explode');
+      heart.classList.add('animate-heart-throb');
+      btn.innerHTML = '<span style="font-size: 1.3rem;">🏹</span> <span>Tembakkan Panah Cinta 💘</span> <i class="bi bi-stars text-warning"></i>';
+    }
+
+    /* ==========================================
+       B. DAFTAR 10 ALASAN AKU MENCINTAIMU
+       ========================================== */
+    const reasonsList = [
+      "Caramu tersenyum saat menatapku selalu berhasil menenangkan hari-hariku yang paling melelahkan.",
+      "Ketulusan hatimu saat mendengarkan cerita-ceritaku, bahkan untuk hal-hal yang paling sepele sekalipun.",
+      "Caramu membuatku merasa aman, dihargai, dan dicintai apa adanya tanpa perlu berpura-pura.",
+      "Tawamu yang manis dan renyah adalah melodi paling indah yang tak pernah bosan kudengar.",
+      "Kesabaranmu yang luar biasa dan caramu selalu mencari jalan keluar dengan kepala dingin.",
+      "Genggaman tanganmu yang hangat saat kita berjalan bersama, membuat dunia terasa begitu bersahabat.",
+      "Dukungan tulusmu dalam setiap impianku, kamu selalu menjadi pendukung terbesarku.",
+      "Kebaikan hatimu kepada orang lain yang selalu membuatku semakin bangga memilihmu.",
+      "Cara matamu berbinar saat kamu bersemangat menceritakan hal yang kamu sukai.",
+      "Karena bersamamu, aku merasa telah menemukan rumah yang sesungguhnya."
     ];
 
-    function initAudio() {
-      if (!audioCtx) {
-        const AudioClass = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioClass();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
+    let currentReasonIndex = 0;
+
+    function showRandomReason() {
+      currentReasonIndex = Math.floor(Math.random() * reasonsList.length);
+      updateReasonDisplay();
+    }
+
+    function showNextReason() {
+      currentReasonIndex = (currentReasonIndex + 1) % reasonsList.length;
+      updateReasonDisplay();
+    }
+
+    function updateReasonDisplay() {
+      const textElem = document.getElementById('reason-text');
+      const badgeElem = document.getElementById('reason-badge');
+      if (textElem && badgeElem) {
+        textElem.style.opacity = 0;
+        setTimeout(() => {
+          badgeElem.textContent = `Alasan #${currentReasonIndex + 1}`;
+          textElem.textContent = `"${reasonsList[currentReasonIndex]}"`;
+          textElem.style.opacity = 1;
+        }, 150);
       }
     }
 
-    function playNote(freq, dur) {
-      if (!audioCtx || !isPlaying) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+    /* ==========================================
+       D. BACKGROUND FLOATING HEARTS
+       ========================================== */
+    const canvas = document.getElementById('hearts-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + dur);
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    class FloatingHeart {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = height + Math.random() * 50;
+        this.size = Math.random() * 14 + 10;
+        this.speedY = Math.random() * 1.2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.8;
+        this.opacity = Math.random() * 0.5 + 0.25;
+        this.rotation = Math.random() * Math.PI;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+        this.color = Math.random() > 0.3 ? 'rgba(255, 182, 193,' : 'rgba(216, 27, 96,';
+      }
+
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        this.rotation += this.rotationSpeed;
+        if (this.y < -30 || this.x < -30 || this.x > width + 30) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.fillStyle = `${this.color} ${this.opacity})`;
+        ctx.beginPath();
+        const topCurveHeight = this.size * 0.3;
+        ctx.moveTo(0, topCurveHeight);
+        ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+        ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, (this.size + topCurveHeight) / 1.5, 0, this.size);
+        ctx.bezierCurveTo(0, (this.size + topCurveHeight) / 1.5, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+        ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
     }
 
-    function loopMelody() {
-      if (!isPlaying) return;
-      const current = melody[noteIndex % melody.length];
-      playNote(noteFreqs[current.note] || 440, current.dur);
-      noteIndex = (noteIndex + 1) % melody.length;
-      timeoutId = setTimeout(loopMelody, current.dur * 640);
+    const hearts = Array.from({ length: 32 }, () => new FloatingHeart());
+
+    function animateHearts() {
+      ctx.clearRect(0, 0, width, height);
+      hearts.forEach(heart => {
+        heart.update();
+        heart.draw();
+      });
+      requestAnimationFrame(animateHearts);
+    }
+    animateHearts();
+
+    /* ==========================================
+       E. INTERACTIVE HEART EXPLOSION ON CLICK
+       ========================================== */
+    let loveCount = 100;
+    function spawnHeartBurst(event) {
+      loveCount += 1;
+      const countElem = document.getElementById('love-counter');
+      if (countElem) countElem.textContent = loveCount;
+
+      const posX = event.clientX || window.innerWidth / 2;
+      const posY = event.clientY || window.innerHeight / 2;
+
+      for (let i = 0; i < 18; i++) {
+        const heartEl = document.createElement('div');
+        heartEl.innerHTML = Math.random() > 0.4 ? '❤️' : (Math.random() > 0.5 ? '💖' : '✨');
+        heartEl.style.position = 'fixed';
+        heartEl.style.left = `${posX}px`;
+        heartEl.style.top = `${posY}px`;
+        heartEl.style.fontSize = `${Math.random() * 22 + 14}px`;
+        heartEl.style.pointerEvents = 'none';
+        heartEl.style.zIndex = '99999';
+        heartEl.style.transition = 'all 1s cubic-bezier(0.25, 1, 0.5, 1)';
+        document.body.appendChild(heartEl);
+
+        const destX = (Math.random() - 0.5) * 260;
+        const destY = -Math.random() * 200 - 50;
+
+        setTimeout(() => {
+          heartEl.style.transform = `translate(${destX}px, ${destY}px) scale(0)`;
+          heartEl.style.opacity = '0';
+        }, 10);
+
+        setTimeout(() => heartEl.remove(), 1100);
+      }
+    }
+
+    /* ==========================================
+       F. PEMUTAR MUSIK LATAR
+       ========================================== */
+    let audioCtx = null;
+    let isPlaying = false;
+    let musicInterval = null;
+
+    const melodyNotes = [
+      261.63, 329.63, 392.00, 523.25, // Chord C
+      196.00, 246.94, 293.66, 392.00, // Chord G
+      220.00, 261.63, 329.63, 440.00, // Chord Am
+      174.61, 220.00, 261.63, 349.23  // Chord F
+    ];
+    let noteIdx = 0;
+
+    function playRomanticNote(freq) {
+      if (!audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      } catch (e) {
+        console.log("Audio notice", e);
+      }
     }
 
     function toggleMusic() {
-      initAudio();
-      const soundBars = document.getElementById('soundBars');
-      const musicStatus = document.getElementById('musicStatus');
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      isPlaying = !isPlaying;
+      const equalizer = document.getElementById('music-equalizer');
+      const icon = document.getElementById('music-icon');
+
       if (isPlaying) {
-        isPlaying = false;
-        clearTimeout(timeoutId);
-        soundBars.classList.remove('playing');
-        musicStatus.innerText = 'Musik: Dijeda 🔇';
+        equalizer.classList.add('active');
+        icon.className = 'bi bi-pause-fill';
+        musicInterval = setInterval(() => {
+          playRomanticNote(melodyNotes[noteIdx]);
+          noteIdx = (noteIdx + 1) % melodyNotes.length;
+        }, 380);
       } else {
-        isPlaying = true;
-        soundBars.classList.add('playing');
-        musicStatus.innerText = 'Musik: Aktif 🎵';
-        loopMelody();
+        equalizer.classList.remove('active');
+        icon.className = 'bi bi-music-note-beamed';
+        clearInterval(musicInterval);
       }
     }
 
-    function startCelebration() {
-      const overlay = document.getElementById('introOverlay');
-      overlay.style.opacity = '0';
-      overlay.style.visibility = 'hidden';
-      setTimeout(() => overlay.remove(), 800);
+    document.getElementById('music-widget').addEventListener('click', toggleMusic);
 
-      initAudio();
-      isPlaying = true;
-      document.getElementById('soundBars').classList.add('playing');
-      document.getElementById('musicStatus').innerText = 'Musik: Aktif 🎵';
-      loopMelody();
-      triggerGrandConfetti();
-    }
+    /* ==========================================
+       G. PENGATURAN GANTI FOTO KENANGAN
+       ========================================== */
+    const defaultPhotoSrc = 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80';
 
-    function triggerGrandConfetti() {
-      confetti({
-        particleCount: 100,
-        spread: 90,
-        origin: { y: 0.6 },
-        colors: ['#f43f5e', '#ec4899', '#fda4af', '#fbbf24', '#ffffff']
-      });
-    }
-
-    function blowCandles() {
-      document.getElementById('flame1').style.display = 'none';
-      document.getElementById('flame2').style.display = 'none';
-      document.getElementById('flame3').style.display = 'none';
-      document.getElementById('wishAlert').classList.remove('d-none');
-      document.getElementById('blowBtn').innerText = 'Lilin Telah Ditiup ✨';
-      triggerGrandConfetti();
-    }
-
-    // Spawn gentle floating background hearts
-    function createBackgroundHearts() {
-      const container = document.getElementById('heartsContainer');
-      const emojis = ['❤️', '💖', '💕', '💗'];
-      for (let i = 0; i < 22; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart-particle';
-        heart.innerHTML = emojis[i % emojis.length];
-        heart.style.left = (Math.random() * 96) + '%';
-        heart.style.fontSize = (Math.random() * 16 + 14) + 'px';
-        heart.style.animationDuration = (Math.random() * 6 + 7) + 's';
-        heart.style.animationDelay = (Math.random() * 9) + 's';
-        container.appendChild(heart);
+    function previewLocalPhoto(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const result = e.target.result;
+          document.getElementById('main-memory-img').src = result;
+          try {
+            localStorage.setItem('anniv_photo', result);
+          } catch(err) {}
+        };
+        reader.readAsDataURL(file);
       }
     }
-    createBackgroundHearts();
 
-    // Spawn heart upon screen tap/click
-    window.addEventListener('click', (e) => {
-      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.flame-element')) return;
-      const heart = document.createElement('div');
-      heart.className = 'click-heart';
-      heart.innerHTML = '❤️';
-      heart.style.left = e.clientX + 'px';
-      heart.style.top = e.clientY + 'px';
-      heart.style.fontSize = (Math.random() * 12 + 20) + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1200);
+    function applyPhotoFromUrl() {
+      const urlInput = document.getElementById('input-photo-url');
+      if (urlInput && urlInput.value.trim()) {
+        const url = urlInput.value.trim();
+        document.getElementById('main-memory-img').src = url;
+        try {
+          localStorage.setItem('anniv_photo', url);
+        } catch(err) {}
+        urlInput.value = '';
+      }
+    }
+
+    function saveMemoryDetails() {
+      const title = document.getElementById('input-edit-title').value;
+      const loc = document.getElementById('input-edit-loc').value;
+      const caption = document.getElementById('input-edit-caption').value;
+
+      document.getElementById('main-memory-title').textContent = `"${title}"`;
+      document.getElementById('main-memory-loc').textContent = loc;
+      document.getElementById('main-memory-caption').textContent = `"${caption}"`;
+
+      try {
+        localStorage.setItem('anniv_photo_title', title);
+        localStorage.setItem('anniv_photo_loc', loc);
+        localStorage.setItem('anniv_photo_caption', caption);
+      } catch(err) {}
+    }
+
+    function resetDefaultPhoto() {
+      document.getElementById('main-memory-img').src = defaultPhotoSrc;
+      document.getElementById('main-memory-title').textContent = '"Dalam Pelukanmu, Aku Menemukan Rumah"';
+      document.getElementById('main-memory-loc').textContent = 'Danau Senja • Hari Yang Tak Terlupakan • Selamanya Bersamamu';
+      document.getElementById('main-memory-caption').textContent = '"Di antara ribuan momen yang kita lewati, saat-saat bersamamu seperti ini adalah bukti bahwa kebahagiaan sejati itu nyata dan sederhana. Pelukan hangatmu selalu menjadi tempat terbaik bagiku untuk beristirahat dari riuhnya dunia."';
+
+      localStorage.removeItem('anniv_photo');
+      localStorage.removeItem('anniv_photo_title');
+      localStorage.removeItem('anniv_photo_loc');
+      localStorage.removeItem('anniv_photo_caption');
+    }
+
+    // Muat foto yang tersimpan di localStorage jika ada
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedPhoto = localStorage.getItem('anniv_photo');
+      if (savedPhoto) {
+        const imgEl = document.getElementById('main-memory-img');
+        if (imgEl) imgEl.src = savedPhoto;
+      }
+      const savedTitle = localStorage.getItem('anniv_photo_title');
+      if (savedTitle) {
+        const tEl = document.getElementById('main-memory-title');
+        if (tEl) tEl.textContent = `"${savedTitle}"`;
+        const inTitle = document.getElementById('input-edit-title');
+        if (inTitle) inTitle.value = savedTitle;
+      }
+      const savedLoc = localStorage.getItem('anniv_photo_loc');
+      if (savedLoc) {
+        const lEl = document.getElementById('main-memory-loc');
+        if (lEl) lEl.textContent = savedLoc;
+        const inLoc = document.getElementById('input-edit-loc');
+        if (inLoc) inLoc.value = savedLoc;
+      }
+      const savedCaption = localStorage.getItem('anniv_photo_caption');
+      if (savedCaption) {
+        const cEl = document.getElementById('main-memory-caption');
+        if (cEl) cEl.textContent = `"${savedCaption}"`;
+        const inCap = document.getElementById('input-edit-caption');
+        if (inCap) inCap.value = savedCaption;
+      }
     });
   </script>
 </body>
-
 </html>
